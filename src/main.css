@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+}
+
+.app-footer {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+}
+
+.main-menu {
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+.right-area {
+    flex-grow: 3;
+    padding: 20px 40px;
+}
