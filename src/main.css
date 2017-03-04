@@ -1,19 +1,13 @@
-.container {
-    display: flex;
-}
-
-.app-footer {
+.addNewButton {
     position: absolute;
     right: 50px;
     bottom: 50px;
 }
 
-.main-menu {
-    flex-grow: 1;
-    min-width: 300px;
+.container {
+    display: flex;
 }
 
-.right-area {
-    flex-grow: 3;
+.rightArea {
     padding: 20px 40px;
 }
