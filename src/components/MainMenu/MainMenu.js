@@ -11,16 +11,8 @@ import FiltersList from '../FiltersList/FiltersList';
 import './mainMenu.css';
 
 const MainMenu = React.createClass({
-    getInitialState: function(){
-        return {
-            channels: ['Facebook','Twitter', 'Instagram', 'Google+', 'Blog'],
-            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack']
-        }
-    }, //getInitialState
-    render: function () {
-        let channels = this.state.channels;
-        let tools = this.state.tools;
 
+    render: function () {
         return (
             <div>
                 <Paper zDepth={2} className="mainMenu">
@@ -36,8 +28,8 @@ const MainMenu = React.createClass({
                         />
                     </List>
                     <Divider />
-                    <FiltersList name="Kanały publikacji" channels={channels}/>
-                    <FiltersList name="Narzędzia publikacji" channels={tools}/>
+                    <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
+                    <FiltersList name="Narzędzia publikacji" channels={this.props.tools}/>
                     <Divider />
                     <List>
                         <ListItem
