@@ -1,9 +1,4 @@
-/.idea/modules.xml
-/.idea/SMPlanner.iml
-/.idea/workspace.xml
+/.idea
 /node_modules
-/.idea/jsLibraryMappings.xml
 /dist
-/.idea/misc.xml
-/.idea/watcherTasks.xml
 /npm-debug.log
