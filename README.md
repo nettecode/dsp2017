@@ -22,13 +22,13 @@ Ready :)
 
 ## Directory Layout
 ```
-├── /dist/                              # The folder for compiled output
+├── /dist/                  # The folder for compiled output
 ├── /node_modules/          # 3rd-party libraries and utilities
-├── /src/                               # The source code of the application
-│   ├── /components/         # React components
+├── /src/                   # The source code of the application
+│   ├── /components/        # React components
 │   ├── index.html
 │   ├── index.js
 │   └── main.css
-│── package.json                # The list of 3rd party libraries and utilities
-└── webpack.config.js        # Configurations for client-side and server-side bundles
+│── package.json            # The list of 3rd party libraries and utilities
+└── webpack.config.js       # Configurations for client-side and server-side bundles
 ```

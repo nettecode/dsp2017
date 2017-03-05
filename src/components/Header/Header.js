@@ -17,6 +17,7 @@ const Header = React.createClass({
                 <AppBar
                     title={<span>Social Media Planner</span>}
                     onTitleTouchTap={handleTouchTap}
+                    showMenuIconButton={false}
                     iconElementRight={<FlatButton label="Login" />}
                 />
             </div>
