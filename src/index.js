@@ -10,10 +10,17 @@ import Header from './components/Header/Header';
 import MainMenu from './components/MainMenu/MainMenu';
 import AddNewDialog from './components/AddNew/AddNewDialog';
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import reducer from './reducers'
+
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 require('./main.css');
+
+const store = createStore(reducer)
 
 let App = React.createClass({
     getChildContext() {
@@ -51,4 +58,4 @@ App.childContextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
 };
 
-ReactDOM.render(<App />, document.getElementById('main-wrapper'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('main-wrapper'));

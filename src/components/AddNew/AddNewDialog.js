@@ -8,6 +8,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import AddNewForm from '../AddNewForm/AddNewForm';
+import { connect } from 'react-redux'
+import { addNewPost } from '../../actions'
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -15,7 +17,8 @@ import AddNewForm from '../AddNewForm/AddNewForm';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-export default class AddNewDialog extends React.Component {
+
+class AddNewDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +27,7 @@ export default class AddNewDialog extends React.Component {
 
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.addPost = this.addPost.bind(this);
     }
 
     handleOpen() {
@@ -31,6 +35,11 @@ export default class AddNewDialog extends React.Component {
     };
 
     handleClose() {
+        this.setState({open: false});
+    };
+
+    addPost() {
+        this.props.dispatch(addNewPost('test'));
         this.setState({open: false});
     };
 
@@ -45,7 +54,7 @@ export default class AddNewDialog extends React.Component {
                 label="Dodaj"
                 primary={true}
                 keyboardFocused={true}
-                onTouchTap={this.handleClose}
+                onTouchTap={this.addPost}
             />,
         ];
 
@@ -67,3 +76,7 @@ export default class AddNewDialog extends React.Component {
         );
     }
 }
+
+AddNewDialog = connect()(AddNewDialog);
+
+export default AddNewDialog
