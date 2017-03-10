@@ -6,6 +6,8 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 
+import './Header.css';
+
 function handleTouchTap() {
     alert('onTouchTap triggered on the title component');
 }
@@ -13,7 +15,7 @@ function handleTouchTap() {
 const Header = React.createClass({
     render: function () {
         return (
-            <div>
+            <div className="header">
                 <AppBar
                     title={<span>Social Media Planner</span>}
                     onTitleTouchTap={handleTouchTap}

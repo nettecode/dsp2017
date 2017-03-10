@@ -1,13 +1,20 @@
 .addNewButton {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
 }
 
 .container {
     display: flex;
+    padding: 80px 0;
 }
 
 .rightArea {
-    padding: 20px 40px;
+    padding: 0 40px;
+    width: 100%;
+    margin: 0 0 0 260px;
+}
+
+ul {
+    list-style-type: none;
 }
