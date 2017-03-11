@@ -33,7 +33,7 @@ const MainMenu = React.createClass({
                     <Divider />
                     <List>
                         <ListItem
-                            primaryText="Settings"
+                            primaryText="Ustawienia"
                         />
                     </List>
                 </Paper>

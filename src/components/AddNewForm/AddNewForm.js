@@ -35,9 +35,9 @@ const AddNewForm = React.createClass({
                         format="24hr"
                         hintText="24hr Format"
                     />
-                    <Checkbox
-                        label="Rekurencyjny?"
-                    />
+                    {/*<Checkbox*/}
+                        {/*label="Cykliczność: "*/}
+                    {/*/>*/}
                 </div>
                 <div>
                     <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
