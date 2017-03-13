@@ -1,6 +1,20 @@
 /**
  * Created by nette on 07.03.17.
  */
+
+const initialState = [
+    {
+        id: 0,
+        text: 'Cytaty motywacyjne',
+        done: false
+    },
+    {
+        id: 1,
+        text: 'Tipy & Wskazówki',
+        done: true
+    },
+]
+
 const post = (state, action) => {
     switch (action.type) {
         case 'ADD_POST':
@@ -23,7 +37,7 @@ const post = (state, action) => {
     }
 };
 
-const posts = (state = [], action) => {
+const posts = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_POST':
             return [
