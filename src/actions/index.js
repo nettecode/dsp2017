@@ -1,7 +1,6 @@
-let nextPostId = 0
 export const addNewPost = (text) => ({
     type: 'ADD_POST',
-    id: nextPostId++,
+    id: new Date(),
     text
 })
 

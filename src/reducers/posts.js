@@ -6,12 +6,12 @@ const initialState = [
     {
         id: 0,
         text: 'Cytaty motywacyjne',
-        done: false
+        completed: false
     },
     {
         id: 1,
         text: 'Tipy & Wskazówki',
-        done: true
+        completed: true
     },
 ]
 

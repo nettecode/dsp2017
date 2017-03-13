@@ -11,6 +11,8 @@ import MainMenu from '../MainMenu/MainMenu';
 import AddNewDialog from '../AddNew/AddNewDialog';
 import PostItem from '../PostItem/PostItem';
 
+import VisiblePostsList from '../VisiblePostsList/VisiblePostsList';
+
 require('./App.css');
 
 var injectTapEventPlugin = require("react-tap-event-plugin");
@@ -36,23 +38,7 @@ const App = React.createClass({
                 <div className="container">
                     <MainMenu channels={channels} tools={tools} />
                     <div className="rightArea">
-                        <ul>
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                            <PostItem />
-                        </ul>
+                        <VisiblePostsList />
                     </div>
                 </div>
 
