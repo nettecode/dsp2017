@@ -15,7 +15,7 @@ import VisiblePostsList from '../VisiblePostsList/VisiblePostsList';
 
 require('./App.css');
 
-var injectTapEventPlugin = require("react-tap-event-plugin");
+const injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 const App = React.createClass({

@@ -6,12 +6,22 @@ const initialState = [
     {
         id: 0,
         text: 'Cytaty motywacyjne',
-        completed: false
+        completed: false,
+        desc: 'Seria cytatów motywacyjnych',
+        publishAt: '2017-03-20T13:00:00.000Z',
+        recurring: true,
+        channels: 3,
+        tools: 1
     },
     {
         id: 1,
         text: 'Tipy & Wskazówki',
-        completed: true
+        completed: true,
+        desc: 'Seria tipów i wskazówek',
+        publishAt: '2017-03-22T13:00:00.000Z',
+        recurring: false,
+        channels: 12,
+        tools: 1
     },
 ]
 
@@ -21,7 +31,11 @@ const post = (state, action) => {
             return {
                 id: action.id,
                 text: action.text,
-                completed: false
+                completed: false,
+                desc: action.desc,
+                publishAt: action.publishAt,
+                channels: action.channels,
+                tools: action.tools
             };
         case 'TOGGLE_POST':
             if (state.id !== action.id) {
