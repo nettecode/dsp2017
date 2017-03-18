@@ -30,12 +30,12 @@ const post = (state, action) => {
         case 'ADD_POST':
             return {
                 id: action.id,
-                text: action.text,
+                text: action.text.postName,
                 completed: false,
-                desc: action.desc,
-                publishAt: action.publishAt,
-                channels: action.channels,
-                tools: action.tools
+                desc: action.text.description,
+                publishAt: '2017-03-22T13:00:00.000Z',
+                channels: 0,
+                tools: 0
             };
         case 'TOGGLE_POST':
             if (state.id !== action.id) {

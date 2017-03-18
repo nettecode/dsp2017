@@ -10,6 +10,7 @@ import Header from '../Header/Header';
 import MainMenu from '../MainMenu/MainMenu';
 import AddNewDialog from '../AddNew/AddNewDialog';
 import PostItem from '../PostItem/PostItem';
+import NewPostForm from '../NewPostForm/NewPostForm'
 
 import VisiblePostsList from '../VisiblePostsList/VisiblePostsList';
 
@@ -39,6 +40,7 @@ const App = React.createClass({
                     <MainMenu channels={channels} tools={tools} />
                     <div className="rightArea">
                         <VisiblePostsList />
+                        <NewPostForm />
                     </div>
                 </div>
 
