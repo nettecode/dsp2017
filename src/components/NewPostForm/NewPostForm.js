@@ -8,6 +8,11 @@ import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import Checkbox from 'material-ui/Checkbox';
 
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 import FiltersList from './../FiltersList/FiltersList';
 
 import { connect } from 'react-redux'
@@ -29,13 +34,18 @@ class NewPostForm extends React.Component {
             time: '',
             // Channels
             channels: ['Facebook','Twitter', 'Instagram', 'Google+', 'Blog'],
-            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack']
+            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack'],
+            open: false
         };
+
+        this.basicState = this.state;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleChange(event, data) {
@@ -77,57 +87,94 @@ class NewPostForm extends React.Component {
         event.preventDefault();
 
         console.log('new date: ' + this.state.datetime);
+        const newPost = this.state;
 
-        this.props.dispatch(addNewPost(this.state));
+        this.props.dispatch(addNewPost(newPost));
+
+        this.setState(this.basicState);
     }
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="formContainer">
-                    <div>
-                        <TextField
-                            name="postName"
-                            value={this.state.name}
-                            floatingLabelText="Nazwa"
-                            onChange={this.handleChange}
-                        /><br/>
-                        <TextField
-                            name="description"
-                            hintText=""
-                            multiLine={true}
-                            rows={2}
-                            rowsMax={4}
-                            floatingLabelText="Opis"
-                            onChange={this.handleChange}
-                        />
-                        <p>Termin publikacji</p>
-                        <DatePicker
-                            name="date"
-                            hintText="Data"
-                            defaultDate={this.state.datetime}
-                            onChange={this.handleDateChange}
-                        />
-                        <TimePicker
-                            name="time"
-                            format="24hr"
-                            hintText="24hr Format"
-                            defaultTime={this.state.datetime}
-                            onChange={this.handleTimeChange}
-                        />
-                        {/*/!*<Checkbox*!/*/}
-                        {/*/!*label="Cykliczność: "*!/*/}
-                    </div>
-                    <div>
-                        <FiltersList name="Kanały publikacji" channels={this.state.channels}/>
-                    </div>
-                    <div>
-                        <FiltersList name="Narzędzia publikacji" channels={this.state.tools}/>
-                    </div>
-                </div>
+    handleOpen() {
+        this.setState({open: true});
+    };
 
-                <input type="submit" value="Submit" />
-            </form>
+    handleClose() {
+        this.setState({open: false});
+    };
+
+    render() {
+        const actions = [
+            <FlatButton
+                label="Anuluj"
+                primary={true}
+                onTouchTap={this.handleClose}
+            />,
+            <FlatButton
+                label="Dodaj"
+                primary={true}
+                keyboardFocused={true}
+                onTouchTap={this.handleSubmit}
+            />,
+        ];
+
+        return (
+
+        <div>
+            <FloatingActionButton onTouchTap={this.handleOpen}>
+                <ContentAdd />
+            </FloatingActionButton>
+            <Dialog
+                title="Planuj nowy post"
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
+            >
+                <form>
+                    <div className="formContainer">
+                        <div>
+                            <TextField
+                                name="postName"
+                                value={this.state.name}
+                                floatingLabelText="Nazwa"
+                                onChange={this.handleChange}
+                            /><br/>
+                            <TextField
+                                name="description"
+                                hintText=""
+                                multiLine={true}
+                                rows={2}
+                                rowsMax={4}
+                                floatingLabelText="Opis"
+                                onChange={this.handleChange}
+                            />
+                            <p>Termin publikacji</p>
+                            <DatePicker
+                                name="date"
+                                hintText="Data"
+                                defaultDate={this.state.datetime}
+                                onChange={this.handleDateChange}
+                            />
+                            <TimePicker
+                                name="time"
+                                format="24hr"
+                                hintText="24hr Format"
+                                defaultTime={this.state.datetime}
+                                onChange={this.handleTimeChange}
+                            />
+                            {/*/!*<Checkbox*!/*/}
+                            {/*/!*label="Cykliczność: "*!/*/}
+                        </div>
+                        <div>
+                            <FiltersList name="Kanały publikacji" channels={this.state.channels}/>
+                        </div>
+                        <div>
+                            <FiltersList name="Narzędzia publikacji" channels={this.state.tools}/>
+                        </div>
+                    </div>
+                </form>
+            </Dialog>
+        </div>
         );
     }
 };

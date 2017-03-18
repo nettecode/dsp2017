@@ -40,12 +40,12 @@ const App = React.createClass({
                     <MainMenu channels={channels} tools={tools} />
                     <div className="rightArea">
                         <VisiblePostsList />
-                        <NewPostForm />
                     </div>
                 </div>
 
                 <div className="addNewButton">
-                    <AddNewDialog channels={channels} tools={tools} />
+                    {/*<AddNewDialog channels={channels} tools={tools} />*/}
+                    <NewPostForm />
                 </div>
             </div>
         );
