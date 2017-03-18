@@ -33,7 +33,7 @@ const post = (state, action) => {
                 text: action.text.postName,
                 completed: false,
                 desc: action.text.description,
-                publishAt: '2017-03-22T13:00:00.000Z',
+                publishAt: action.text.datetime,
                 channels: 0,
                 tools: 0
             };
