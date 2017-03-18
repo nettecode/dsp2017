@@ -8,13 +8,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Header from '../Header/Header';
 import MainMenu from '../MainMenu/MainMenu';
-import AddNewDialog from '../AddNew/AddNewDialog';
-import PostItem from '../PostItem/PostItem';
 import NewPostForm from '../NewPostForm/NewPostForm'
 
 import VisiblePostsList from '../VisiblePostsList/VisiblePostsList';
 
-require('./App.css');
+import './App.css'
 
 const injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -44,7 +42,6 @@ const App = React.createClass({
                 </div>
 
                 <div className="addNewButton">
-                    {/*<AddNewDialog channels={channels} tools={tools} />*/}
                     <NewPostForm />
                 </div>
             </div>
