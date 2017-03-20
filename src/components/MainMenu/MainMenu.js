@@ -12,9 +12,18 @@ import FiltersList from '../FiltersList/FiltersList';
 
 import './mainMenu.css';
 
-let MainMenu = React.createClass({
+class MainMenu extends React.Component {
+    constructor(props) {
+        super(props);
 
-    render: function () {
+        this.handleFilterChange = this.handleFilterChange.bind(this);
+    }
+
+    handleFilterChange(value){
+        console.log("tbd");
+    }
+
+    render() {
         return (
             <div>
                 <Paper zDepth={2} className="mainMenu">
@@ -30,8 +39,16 @@ let MainMenu = React.createClass({
                         {/*/>*/}
                     </List>
                     <Divider />
-                    <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
-                    <FiltersList name="Narzędzia publikacji" channels={this.props.tools}/>
+                    <FiltersList
+                        name="Kanały publikacji"
+                        channels={this.props.channels}
+                        onChange={this.handleFilterChange}
+                    />
+                    <FiltersList
+                        name="Narzędzia publikacji"
+                        channels={this.props.tools}
+                        onChange={this.handleFilterChange}
+                    />
                     {/*<Divider />*/}
                     {/*<List>*/}
                         {/*<ListItem*/}
@@ -42,7 +59,7 @@ let MainMenu = React.createClass({
             </div>
         );
     }
-});
+};
 
 const mapStateToProps = (state) => ({
     channels: state.channels,

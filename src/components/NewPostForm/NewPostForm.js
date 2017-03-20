@@ -38,6 +38,18 @@ class NewPostForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleChannelsChange = this.handleChannelsChange.bind(this);
+        this.handleToolsChange = this.handleToolsChange.bind(this);
+    }
+
+    handleChannelsChange(value) {
+        const newValue = this.state.publishChannels + Number(value);
+        this.setState({publishChannels: newValue});
+    }
+
+    handleToolsChange(value) {
+        const newValue = this.state.publishTools + Number(value);
+        this.setState({publishTools: newValue});
     }
 
     handleChange(event, data) {
@@ -147,10 +159,18 @@ class NewPostForm extends React.Component {
                             {/*/!*label="Cykliczność: "*!/*/}
                         </div>
                         <div>
-                            <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
+                            <FiltersList
+                                name="Kanały publikacji"
+                                channels={this.props.channels}
+                                onChange={this.handleChannelsChange}
+                            />
                         </div>
                         <div>
-                            <FiltersList name="Narzędzia publikacji" channels={this.props.tools}/>
+                            <FiltersList
+                                name="Narzędzia publikacji"
+                                channels={this.props.tools}
+                                onChange={this.handleToolsChange}
+                            />
                         </div>
                     </div>
                 </form>

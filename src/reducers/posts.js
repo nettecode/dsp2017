@@ -34,8 +34,8 @@ const post = (state, action) => {
                 completed: false,
                 desc: action.text.description,
                 publishAt: action.text.datetime,
-                channels: 0,
-                tools: 0
+                channels: action.text.publishChannels,
+                tools: action.text.publishTools
             };
         case 'TOGGLE_POST_STATE':
             if (state.id !== action.id) {
