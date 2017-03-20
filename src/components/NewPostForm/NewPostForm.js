@@ -39,11 +39,17 @@ class NewPostForm extends React.Component {
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChannelsChange = this.handleChannelsChange.bind(this);
+        this.handleToolsChange = this.handleToolsChange.bind(this);
     }
 
     handleChannelsChange(value) {
         const newValue = this.state.publishChannels + Number(value);
         this.setState({publishChannels: newValue});
+    }
+
+    handleToolsChange(value) {
+        const newValue = this.state.publishTools + Number(value);
+        this.setState({publishTools: newValue});
     }
 
     handleChange(event, data) {
@@ -163,6 +169,7 @@ class NewPostForm extends React.Component {
                             <FiltersList
                                 name="Narzędzia publikacji"
                                 channels={this.props.tools}
+                                onChange={this.handleToolsChange}
                             />
                         </div>
                     </div>

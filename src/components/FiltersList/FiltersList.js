@@ -1,7 +1,7 @@
 /**
  * Created by nette on 04.03.17.
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Checkbox from 'material-ui/Checkbox';
 import {List, ListItem} from 'material-ui/List';
@@ -34,5 +34,11 @@ const FiltersList = React.createClass({
         );
     }
 });
+
+FiltersList.propTypes = {
+    name: PropTypes.string.isRequired,
+    channels: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired
+}
 
 export default FiltersList;
