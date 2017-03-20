@@ -25,3 +25,8 @@ export const addNewTool = (text) => ({
     id: Number(new Date()),
     text
 })
+
+export const removePost = (id) => ({
+    type: 'REMOVE_POST',
+    id
+})

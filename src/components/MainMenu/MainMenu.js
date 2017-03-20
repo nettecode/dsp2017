@@ -19,25 +19,25 @@ let MainMenu = React.createClass({
             <div>
                 <Paper zDepth={2} className="mainMenu">
                     <List>
-                        <ListItem
-                            primaryText="Kalendarz"
-                        />
+                        {/*<ListItem*/}
+                            {/*primaryText="Kalendarz"*/}
+                        {/*/>*/}
                         <ListItem
                             primaryText="Lista"
                         />
-                        <ListItem
-                            primaryText="Baza pomysłów"
-                        />
+                        {/*<ListItem*/}
+                            {/*primaryText="Baza pomysłów"*/}
+                        {/*/>*/}
                     </List>
                     <Divider />
                     <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
                     <FiltersList name="Narzędzia publikacji" channels={this.props.tools}/>
-                    <Divider />
-                    <List>
-                        <ListItem
-                            primaryText="Ustawienia"
-                        />
-                    </List>
+                    {/*<Divider />*/}
+                    {/*<List>*/}
+                        {/*<ListItem*/}
+                            {/*primaryText="Ustawienia"*/}
+                        {/*/>*/}
+                    {/*</List>*/}
                 </Paper>
             </div>
         );

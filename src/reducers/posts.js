@@ -62,6 +62,8 @@ const posts = (state = initialState, action) => {
             return state.map(t =>
                 post(t, action)
             );
+        case 'REMOVE_POST':
+            return state.filter(post => post.id !== action.id);
         default:
             return state
     }
