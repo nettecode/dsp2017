@@ -19,12 +19,13 @@ class PostItem extends React.Component {
         const { post, removePost, togglePostState } = this.props
 
         const availableChannels = (Object.assign([], this.props.channels)).reverse();
+        let postChannels = post.channels;
 
         let channelsIcons = availableChannels.map(function (item, index) {
-            if (post.channels < item.value) {
+            if (postChannels < item.value) {
                 return;
             } else {
-                post.channels -= item.value;
+                postChannels -= item.value;
                 return (
                     <li key={index}>
                         <div className="socialMediaIcon" style={{backgroundColor: item.color}}></div>
