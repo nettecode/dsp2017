@@ -15,11 +15,11 @@ const formatDate = function(date) {
 
 class PostItem extends React.Component {
     render() {
-        const { post, removePost } = this.props
+        const { post, removePost, togglePostState } = this.props
 
         return (
             <li className="postItem">
-                <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon>
+                <a href="#" onClick={() => togglePostState(post.id)}> <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon></a>
                 <div className="postDetails">
                     <label>{post.text}</label>
                     <div>
@@ -47,7 +47,7 @@ PostItem.propTypes = {
     post: PropTypes.object.isRequired,
     // editPost: PropTypes.func.isRequired,
     removePost: PropTypes.func.isRequired,
-    // completePost: PropTypes.func.isRequired
+    togglePostState: PropTypes.func.isRequired
 }
 
 export default PostItem;

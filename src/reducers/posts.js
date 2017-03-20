@@ -37,7 +37,7 @@ const post = (state, action) => {
                 channels: 0,
                 tools: 0
             };
-        case 'TOGGLE_POST':
+        case 'TOGGLE_POST_STATE':
             if (state.id !== action.id) {
                 return state
             }
@@ -58,7 +58,8 @@ const posts = (state = initialState, action) => {
                 ...state,
                 post(undefined, action)
             ];
-        case 'TOGGLE_POST':
+        case 'TOGGLE_POST_STATE':
+            console.log('toggle');
             return state.map(t =>
                 post(t, action)
             );
