@@ -13,3 +13,15 @@ export const setVisibilityFilter = (filter) => ({
     type: 'SET_VISIBILITY_FILTER',
     filter
 })
+
+export const addNewChannel = (text) => ({
+    type: 'ADD_CHANNEL',
+    id: Number(new Date()),
+    text
+})
+
+export const addNewTool = (text) => ({
+    type: 'ADD_TOOL',
+    id: Number(new Date()),
+    text
+})

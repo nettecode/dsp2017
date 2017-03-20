@@ -2,6 +2,8 @@
  * Created by nette on 04.03.17.
  */
 import React from 'react';
+import { connect } from 'react-redux'
+
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
@@ -10,7 +12,7 @@ import FiltersList from '../FiltersList/FiltersList';
 
 import './mainMenu.css';
 
-const MainMenu = React.createClass({
+let MainMenu = React.createClass({
 
     render: function () {
         return (
@@ -41,5 +43,14 @@ const MainMenu = React.createClass({
         );
     }
 });
+
+const mapStateToProps = (state) => ({
+    channels: state.channels,
+    tools: state.tools
+})
+
+MainMenu = connect(
+    mapStateToProps
+)(MainMenu);
 
 export default MainMenu;

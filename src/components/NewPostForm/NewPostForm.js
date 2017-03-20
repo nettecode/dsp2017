@@ -27,8 +27,6 @@ class NewPostForm extends React.Component {
             datetime: new Date(),
             publishChannels: 0,
             publishTools: 0,
-            channels: ['Facebook','Twitter', 'Instagram', 'Google+', 'Blog'],
-            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack'],
             open: false
         };
 
@@ -149,10 +147,10 @@ class NewPostForm extends React.Component {
                             {/*/!*label="Cykliczność: "*!/*/}
                         </div>
                         <div>
-                            <FiltersList name="Kanały publikacji" channels={this.state.channels}/>
+                            <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
                         </div>
                         <div>
-                            <FiltersList name="Narzędzia publikacji" channels={this.state.tools}/>
+                            <FiltersList name="Narzędzia publikacji" channels={this.props.tools}/>
                         </div>
                     </div>
                 </form>
@@ -162,6 +160,13 @@ class NewPostForm extends React.Component {
     }
 };
 
-NewPostForm = connect()(NewPostForm);
+const mapStateToProps = (state) => ({
+    channels: state.channels,
+    tools: state.tools
+})
+
+NewPostForm = connect(
+    mapStateToProps
+)(NewPostForm);
 
 export default NewPostForm;
