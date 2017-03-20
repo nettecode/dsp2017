@@ -149,7 +149,7 @@ class NewPostForm extends React.Component {
                             {/*/!*label="Cykliczność: "*!/*/}
                         </div>
                         <div>
-                            <FiltersList name="Kanały publikacji" channels={this.state.channels}/>
+                            <FiltersList name="Kanały publikacji" channels={this.props.channels}/>
                         </div>
                         <div>
                             <FiltersList name="Narzędzia publikacji" channels={this.state.tools}/>
@@ -162,6 +162,12 @@ class NewPostForm extends React.Component {
     }
 };
 
-NewPostForm = connect()(NewPostForm);
+const mapStateToProps = (state) => ({
+    channels: state.channels
+})
+
+NewPostForm = connect(
+    mapStateToProps
+)(NewPostForm);
 
 export default NewPostForm;
