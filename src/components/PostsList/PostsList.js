@@ -4,13 +4,13 @@
 import React, { PropTypes } from 'react'
 import PostItem from '../PostItem/PostItem'
 
-const PostsList = ({ posts, onPostDoneClick }) => (
+const PostsList = ({ posts, actions }) => (
     <ul>
         {posts.map(post =>
             <PostItem
                 key={post.id}
-                {...post}
-                onClick={() => onPostDoneClick(post.id)}
+                post={post}
+                {...actions}
             />
         )}
     </ul>
@@ -22,7 +22,7 @@ PostsList.propTypes = {
         completed: PropTypes.bool.isRequired,
         text: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    onPostDoneClick: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 }
 
 export default PostsList

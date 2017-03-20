@@ -13,8 +13,8 @@ const FiltersList = React.createClass({
         channels = channels.map(function (item, index) {
             return (
                 <ListItem key={index}
-                          leftCheckbox={<Checkbox disabled={true}/>}
-                          primaryText={item}
+                          leftCheckbox={<Checkbox/>}
+                          primaryText={item.name}
                 />
             );
         }.bind(this));
