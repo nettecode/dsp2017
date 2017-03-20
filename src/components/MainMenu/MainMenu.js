@@ -45,7 +45,8 @@ let MainMenu = React.createClass({
 });
 
 const mapStateToProps = (state) => ({
-    channels: state.channels
+    channels: state.channels,
+    tools: state.tools
 })
 
 MainMenu = connect(

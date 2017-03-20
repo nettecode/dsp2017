@@ -19,3 +19,9 @@ export const addNewChannel = (text) => ({
     id: Number(new Date()),
     text
 })
+
+export const addNewTool = (text) => ({
+    type: 'ADD_TOOL',
+    id: Number(new Date()),
+    text
+})
