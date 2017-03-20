@@ -8,12 +8,18 @@ import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
 const FiltersList = React.createClass({
+    handleCheck: function (event, isChecked) {
+        const value = isChecked ? event.target.value : -event.target.value;
+        this.props.onChange(value);
+    },
+
     render: function () {
         let channels = this.props.channels;
+
         channels = channels.map(function (item, index) {
             return (
                 <ListItem key={index}
-                          leftCheckbox={<Checkbox/>}
+                          leftCheckbox={<Checkbox onCheck={this.handleCheck} value={item.value}/>}
                           primaryText={item.name}
                 />
             );

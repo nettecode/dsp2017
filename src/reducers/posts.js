@@ -34,7 +34,7 @@ const post = (state, action) => {
                 completed: false,
                 desc: action.text.description,
                 publishAt: action.text.datetime,
-                channels: 0,
+                channels: action.text.publishChannels,
                 tools: 0
             };
         case 'TOGGLE_POST_STATE':
