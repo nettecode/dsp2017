@@ -37,7 +37,7 @@ const FiltersList = React.createClass({
 
 FiltersList.propTypes = {
     name: PropTypes.string.isRequired,
-    channels: PropTypes.object.isRequired,
+    channels: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired
 }
 

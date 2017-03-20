@@ -21,21 +21,12 @@ const App = React.createClass({
     getChildContext() {
         return {muiTheme: getMuiTheme(baseTheme)};
     },
-    getInitialState: function(){
-        return {
-            channels: ['Facebook','Twitter', 'Instagram', 'Google+', 'Blog'],
-            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack']
-        }
-    }, //getInitialState
     render: function () {
-        const channels = this.state.channels;
-        const tools = this.state.tools;
-
         return (
             <div>
                 <Header />
                 <div className="container">
-                    <MainMenu channels={channels} tools={tools} />
+                    <MainMenu />
                     <div className="rightArea">
                         <VisiblePostsList />
                     </div>
