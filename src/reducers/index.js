@@ -3,9 +3,11 @@
  */
 import { combineReducers } from 'redux'
 import posts from './posts'
+import channels from './channels'
 
 const smplannerApp = combineReducers({
-    posts
+    posts,
+    channels
 })
 
 export default smplannerApp
