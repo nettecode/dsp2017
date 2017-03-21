@@ -37,7 +37,7 @@ const initialState = [
         color: '#8a3ab9',
         faIcon: ''
     }
-]
+];
 
 let lastValue = Math.pow(2, initialState.length-1);
 

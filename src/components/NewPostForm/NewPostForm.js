@@ -90,11 +90,11 @@ class NewPostForm extends React.Component {
 
     handleOpen() {
         this.setState({open: true});
-    };
+    }
 
     handleClose() {
         this.setState({open: false});
-    };
+    }
 
     render() {
         const actions = [
@@ -178,12 +178,12 @@ class NewPostForm extends React.Component {
         </div>
         );
     }
-};
+}
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
     tools: state.tools
-})
+});
 
 NewPostForm = connect(
     mapStateToProps

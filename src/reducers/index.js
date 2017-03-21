@@ -11,6 +11,6 @@ const smplannerApp = combineReducers({
     posts,
     channels,
     tools
-})
+});
 
 export default smplannerApp

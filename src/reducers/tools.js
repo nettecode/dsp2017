@@ -18,8 +18,13 @@ const initialState = [
         id: 2,
         name: 'Jetpack',
         value: 4
+    },
+    {
+        id: 3,
+        name: 'Facebook Planner',
+        value: 8
     }
-]
+];
 
 const tool = (state, action) => {
     switch (action.type) {

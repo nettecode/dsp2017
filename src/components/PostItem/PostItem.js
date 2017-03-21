@@ -22,9 +22,8 @@ class PostItem extends React.Component {
         let postChannels = post.channels;
 
         let channelsIcons = availableChannels.map(function (item, index) {
-            if (postChannels < item.value) {
-                return;
-            } else {
+            if (postChannels >= item.value) {
+                console.log(postChannels + ': ' + item.value);
                 postChannels -= item.value;
                 return (
                     <li key={index}>
@@ -63,11 +62,11 @@ PostItem.propTypes = {
     // editPost: PropTypes.func.isRequired,
     removePost: PropTypes.func.isRequired,
     togglePostState: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
-})
+});
 
 PostItem = connect(
     mapStateToProps
