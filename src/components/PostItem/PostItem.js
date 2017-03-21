@@ -2,6 +2,7 @@
  * Created by nette on 10.03.17.
  */
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux'
 
 import FontIcon from 'material-ui/FontIcon';
 
@@ -13,34 +14,62 @@ const formatDate = function(date) {
     return DateFormat(date, 'dd.mm.yyyy  hh:MM');
 };
 
-const PostItem = ({ onClick, completed, text, publishAt, recurring, channels, tools }) => (
-    <li className="postItem">
-        <FontIcon className='material-icons' style={{visibility: completed ? 'visible' : 'hidden'}}>done</FontIcon>
-        <div className="postDetails">
-            <label>{text}</label>
-            <div>
-                <label>N: {tools}</label>
-                <ul className="socialMediaIcons">
-                    <li><div className="socialMediaIcon"></div></li>
-                    <li><div className="socialMediaIcon"></div></li>
-                    <li><div className="socialMediaIcon"></div></li>
-                </ul>
-                <FontIcon className="material-icons" style={{visibility: recurring ? 'visible' : 'hidden'}}>autorenew</FontIcon>
-                <label>{formatDate(publishAt)}</label>
-                {/*<FontIcon className="material-icons">alarm on</FontIcon>*/}
-            </div>
-        </div>
-        <div>
-            <FontIcon className="material-icons">mode edit</FontIcon>
-            <FontIcon className="material-icons">delete</FontIcon>
-        </div>
-    </li>
-);
+class PostItem extends React.Component {
+    render() {
+        const { post, removePost, togglePostState } = this.props
+
+        const availableChannels = (Object.assign([], this.props.channels)).reverse();
+        let postChannels = post.channels;
+
+        let channelsIcons = availableChannels.map(function (item, index) {
+            if (postChannels >= item.value) {
+                console.log(postChannels + ': ' + item.value);
+                postChannels -= item.value;
+                return (
+                    <li key={index}>
+                        <div className="socialMediaIcon" style={{backgroundColor: item.color}}></div>
+                    </li>
+                );
+            }
+        });
+
+        return (
+            <li className="postItem">
+                <a href="#" onClick={() => togglePostState(post.id)}> <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon></a>
+                <div className="postDetails">
+                    <label>{post.text}</label>
+                    <div>
+                        <label>N: {post.tools}</label>
+                        <ul className="socialMediaIcons">
+                            {channelsIcons}
+                        </ul>
+                        <FontIcon className="material-icons" style={{visibility: post.recurring ? 'visible' : 'hidden'}}>autorenew</FontIcon>
+                        <label>{formatDate(post.publishAt)}</label>
+                        {/*<FontIcon className="material-icons">alarm on</FontIcon>*/}
+                    </div>
+                </div>
+                <div>
+                    <FontIcon className="material-icons">mode edit</FontIcon>
+                    <a href="#" onClick={() => removePost(post.id)}><FontIcon className="material-icons">delete</FontIcon></a>
+                </div>
+            </li>
+        )
+    }
+}
 
 PostItem.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
-}
+    post: PropTypes.object.isRequired,
+    // editPost: PropTypes.func.isRequired,
+    removePost: PropTypes.func.isRequired,
+    togglePostState: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    channels: state.channels,
+});
+
+PostItem = connect(
+    mapStateToProps
+)(PostItem);
 
 export default PostItem;

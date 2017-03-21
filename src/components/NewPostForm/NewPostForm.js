@@ -27,8 +27,6 @@ class NewPostForm extends React.Component {
             datetime: new Date(),
             publishChannels: 0,
             publishTools: 0,
-            channels: ['Facebook','Twitter', 'Instagram', 'Google+', 'Blog'],
-            tools: ['Buffer', 'Facebook Post Planner', 'Jetpack'],
             open: false
         };
 
@@ -40,6 +38,18 @@ class NewPostForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleChannelsChange = this.handleChannelsChange.bind(this);
+        this.handleToolsChange = this.handleToolsChange.bind(this);
+    }
+
+    handleChannelsChange(value) {
+        const newValue = this.state.publishChannels + Number(value);
+        this.setState({publishChannels: newValue});
+    }
+
+    handleToolsChange(value) {
+        const newValue = this.state.publishTools + Number(value);
+        this.setState({publishTools: newValue});
     }
 
     handleChange(event, data) {
@@ -80,11 +90,11 @@ class NewPostForm extends React.Component {
 
     handleOpen() {
         this.setState({open: true});
-    };
+    }
 
     handleClose() {
         this.setState({open: false});
-    };
+    }
 
     render() {
         const actions = [
@@ -149,10 +159,18 @@ class NewPostForm extends React.Component {
                             {/*/!*label="Cykliczność: "*!/*/}
                         </div>
                         <div>
-                            <FiltersList name="Kanały publikacji" channels={this.state.channels}/>
+                            <FiltersList
+                                name="Kanały publikacji"
+                                channels={this.props.channels}
+                                onChange={this.handleChannelsChange}
+                            />
                         </div>
                         <div>
-                            <FiltersList name="Narzędzia publikacji" channels={this.state.tools}/>
+                            <FiltersList
+                                name="Narzędzia publikacji"
+                                channels={this.props.tools}
+                                onChange={this.handleToolsChange}
+                            />
                         </div>
                     </div>
                 </form>
@@ -160,8 +178,15 @@ class NewPostForm extends React.Component {
         </div>
         );
     }
-};
+}
 
-NewPostForm = connect()(NewPostForm);
+const mapStateToProps = (state) => ({
+    channels: state.channels,
+    tools: state.tools
+});
+
+NewPostForm = connect(
+    mapStateToProps
+)(NewPostForm);
 
 export default NewPostForm;
