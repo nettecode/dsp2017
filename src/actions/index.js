@@ -30,3 +30,8 @@ export const removePost = (id) => ({
     type: 'REMOVE_POST',
     id
 });
+
+export const openPostPropertiesDialog = (open) => ({
+    type: 'OPEN_POST_PROP_DIALOG',
+    open
+});
