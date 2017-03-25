@@ -14,7 +14,7 @@ const PostsList = ({ posts, actions }) => (
             />
         )}
     </ul>
-)
+);
 
 PostsList.propTypes = {
     posts: PropTypes.arrayOf(PropTypes.shape({
@@ -23,6 +23,6 @@ PostsList.propTypes = {
         text: PropTypes.string.isRequired
     }).isRequired).isRequired,
     actions: PropTypes.object.isRequired
-}
+};
 
 export default PostsList

@@ -2,7 +2,7 @@
  * Created by nette on 04.03.17.
  */
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -59,12 +59,12 @@ class MainMenu extends React.Component {
             </div>
         );
     }
-};
+}
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
     tools: state.tools
-})
+});
 
 MainMenu = connect(
     mapStateToProps

@@ -1,8 +1,6 @@
 /**
  * Created by nette on 20.03.17.
  */
-let lastValue = 16; // read from settings
-
 const initialState = [
     {
         id: 0,
@@ -39,7 +37,9 @@ const initialState = [
         color: '#8a3ab9',
         faIcon: ''
     }
-]
+];
+
+let lastValue = Math.pow(2, initialState.length-1);
 
 const channel = (state, action) => {
     switch (action.type) {

@@ -39,6 +39,6 @@ FiltersList.propTypes = {
     name: PropTypes.string.isRequired,
     channels: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired
-}
+};
 
 export default FiltersList;

@@ -2,10 +2,13 @@
  * Created by nette on 10.03.17.
  */
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux'
 
 import FontIcon from 'material-ui/FontIcon';
 
 import DateFormat from 'dateformat';
+
+import { openPostPropertiesDialog } from '../../actions';
 
 import './PostItem.css';
 
@@ -17,6 +20,21 @@ class PostItem extends React.Component {
     render() {
         const { post, removePost, togglePostState } = this.props
 
+        const availableChannels = (Object.assign([], this.props.channels)).reverse();
+        let postChannels = post.channels;
+
+        let channelsIcons = availableChannels.map(function (item, index) {
+            if (postChannels >= item.value) {
+                console.log(postChannels + ': ' + item.value);
+                postChannels -= item.value;
+                return (
+                    <li key={index}>
+                        <div className="socialMediaIcon" style={{backgroundColor: item.color}}></div>
+                    </li>
+                );
+            }
+        });
+
         return (
             <li className="postItem">
                 <a href="#" onClick={() => togglePostState(post.id)}> <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon></a>
@@ -25,9 +43,7 @@ class PostItem extends React.Component {
                     <div>
                         <label>N: {post.tools}</label>
                         <ul className="socialMediaIcons">
-                            <li><div className="socialMediaIcon"></div></li>
-                            <li><div className="socialMediaIcon"></div></li>
-                            <li><div className="socialMediaIcon"></div></li>
+                            {channelsIcons}
                         </ul>
                         <FontIcon className="material-icons" style={{visibility: post.recurring ? 'visible' : 'hidden'}}>autorenew</FontIcon>
                         <label>{formatDate(post.publishAt)}</label>
@@ -35,7 +51,9 @@ class PostItem extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <FontIcon className="material-icons">mode edit</FontIcon>
+                    <a href="#" onClick={() => {
+                        this.props.dispatch(openPostPropertiesDialog(true, post.id));
+                    }}><FontIcon className="material-icons">mode edit</FontIcon></a>
                     <a href="#" onClick={() => removePost(post.id)}><FontIcon className="material-icons">delete</FontIcon></a>
                 </div>
             </li>
@@ -48,6 +66,14 @@ PostItem.propTypes = {
     // editPost: PropTypes.func.isRequired,
     removePost: PropTypes.func.isRequired,
     togglePostState: PropTypes.func.isRequired
-}
+};
+
+const mapStateToProps = (state) => ({
+    channels: state.channels
+});
+
+PostItem = connect(
+    mapStateToProps
+)(PostItem);
 
 export default PostItem;
