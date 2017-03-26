@@ -9,10 +9,8 @@ const initialState = {
 };
 
 const params = (state = initialState, action) => {
-    console.log('params changed');
     switch (action.type) {
         case 'OPEN_POST_PROP_DIALOG':
-            console.log('post prop dialog open');
             return {
                 ...state,
                 postPropertiesOpen: action.open

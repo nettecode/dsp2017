@@ -25,7 +25,6 @@ class PostItem extends React.Component {
 
         let channelsIcons = availableChannels.map(function (item, index) {
             if (postChannels >= item.value) {
-                console.log(postChannels + ': ' + item.value);
                 postChannels -= item.value;
                 return (
                     <li key={index}>

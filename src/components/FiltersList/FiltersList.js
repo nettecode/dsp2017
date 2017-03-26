@@ -7,38 +7,45 @@ import Checkbox from 'material-ui/Checkbox';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
-const FiltersList = React.createClass({
-    handleCheck: function (event, isChecked) {
-        const value = isChecked ? event.target.value : -event.target.value;
-        this.props.onChange(value);
-    },
+function FiltersList ({ name, options, onChange, value }) {
+    let checked, sum = value;
 
-    render: function () {
-        let channels = this.props.channels;
+    const handleCheck = function (event, isChecked) {
+        value =  Number(value) + (isChecked ? Number(event.target.value) : Number(-event.target.value));
+        onChange(value);
+    };
 
-        channels = channels.map(function (item, index) {
-            return (
-                <ListItem key={index}
-                          leftCheckbox={<Checkbox onCheck={this.handleCheck} value={item.value}/>}
-                          primaryText={item.name}
-                />
-            );
-        }.bind(this));
+    options = (options.reverse()).map(function (item, index) {
+        if (sum >= item.value) {
+            sum -= item.value;
+            checked = true;
+        } else {
+            checked = false;
+        }
+
         return (
-            <div>
-                <List>
-                    <Subheader>{this.props.name}</Subheader>
-                    {channels}
-                </List>
-            </div>
+            <ListItem key={index}
+                      leftCheckbox={<Checkbox onCheck={handleCheck} value={item.value} defaultChecked={checked}/>}
+                      primaryText={item.name}
+            />
         );
-    }
-});
+    }.bind(this));
+
+    options.reverse();
+
+    return (
+        <List>
+            <Subheader>{name}</Subheader>
+            {options}
+        </List>
+    );
+}
 
 FiltersList.propTypes = {
     name: PropTypes.string.isRequired,
-    channels: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired
+    options: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.node.isRequired
 };
 
 export default FiltersList;
