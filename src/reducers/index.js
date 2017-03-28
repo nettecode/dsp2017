@@ -6,11 +6,13 @@ import { combineReducers } from 'redux'
 import posts from './posts'
 import channels from './channels'
 import tools from './tools'
+import params from './params'
 
 const smplannerApp = combineReducers({
     posts,
     channels,
-    tools
+    tools,
+    params
 });
 
 export default smplannerApp

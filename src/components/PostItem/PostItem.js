@@ -8,6 +8,8 @@ import FontIcon from 'material-ui/FontIcon';
 
 import DateFormat from 'dateformat';
 
+import { openPostPropertiesDialog } from '../../actions';
+
 import './PostItem.css';
 
 const formatDate = function(date) {
@@ -49,7 +51,9 @@ class PostItem extends React.Component {
                     </div>
                 </div>
                 <div>
-                    <FontIcon className="material-icons">mode edit</FontIcon>
+                    <a href="#" onClick={() => {
+                        this.props.dispatch(openPostPropertiesDialog(true, post.id));
+                    }}><FontIcon className="material-icons">mode edit</FontIcon></a>
                     <a href="#" onClick={() => removePost(post.id)}><FontIcon className="material-icons">delete</FontIcon></a>
                 </div>
             </li>
@@ -65,7 +69,7 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    channels: state.channels,
+    channels: state.channels
 });
 
 PostItem = connect(

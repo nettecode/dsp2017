@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux'
-import { addNewPost } from '../../actions'
+import { addNewPost, openPostPropertiesDialog } from '../../actions'
 
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
@@ -11,15 +11,13 @@ import TimePicker from 'material-ui/TimePicker';
 import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import FiltersList from './../FiltersList/FiltersList';
 
 import './NewPostForm.css'
 
 class NewPostForm extends React.Component {
-    constructor(props) {
+     constructor(props) {
         super(props);
         this.state = {
             postName: '',
@@ -27,7 +25,7 @@ class NewPostForm extends React.Component {
             datetime: new Date(),
             publishChannels: 0,
             publishTools: 0,
-            open: false
+            open: this.props.params.postPropertiesOpen
         };
 
         this.basicState = this.state;
@@ -36,10 +34,19 @@ class NewPostForm extends React.Component {
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleOpen = this.handleOpen.bind(this);
+        // this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChannelsChange = this.handleChannelsChange.bind(this);
         this.handleToolsChange = this.handleToolsChange.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.open !== nextProps.params.postPropertiesOpen) {
+            this.setState({open: nextProps.params.postPropertiesOpen});
+            return true;
+        }
+
+        return false;
     }
 
     handleChannelsChange(value) {
@@ -88,12 +95,12 @@ class NewPostForm extends React.Component {
         this.setState(this.basicState);
     }
 
-    handleOpen() {
-        this.setState({open: true});
-    }
+    // handleOpen() {
+    //     this.setState({open: true});
+    // }
 
     handleClose() {
-        this.setState({open: false});
+        this.props.dispatch(openPostPropertiesDialog(false));
     }
 
     render() {
@@ -114,9 +121,6 @@ class NewPostForm extends React.Component {
         return (
 
         <div>
-            <FloatingActionButton onTouchTap={this.handleOpen}>
-                <ContentAdd />
-            </FloatingActionButton>
             <Dialog
                 title="Planuj nowy post"
                 actions={actions}
@@ -182,7 +186,8 @@ class NewPostForm extends React.Component {
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
-    tools: state.tools
+    tools: state.tools,
+    params: state.params
 });
 
 NewPostForm = connect(

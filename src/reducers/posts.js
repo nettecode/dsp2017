@@ -119,7 +119,6 @@ const posts = (state = initialState, action) => {
                 post(undefined, action)
             ];
         case 'TOGGLE_POST_STATE':
-            console.log('toggle');
             return state.map(t =>
                 post(t, action)
             );
