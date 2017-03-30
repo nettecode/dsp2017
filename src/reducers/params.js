@@ -5,7 +5,8 @@
 
 // TODO: Read from database
 const initialState = {
-    postPropertiesOpen: false
+    postPropertiesOpen: false,
+    editedPostId: null
 };
 
 const params = (state = initialState, action) => {
@@ -15,7 +16,8 @@ const params = (state = initialState, action) => {
             console.log('post prop dialog open');
             return {
                 ...state,
-                postPropertiesOpen: action.open
+                postPropertiesOpen: action.open,
+                editedPostId: action.postId || null
             };
         default:
             return state

@@ -5,6 +5,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { addNewPost, openPostPropertiesDialog } from '../../actions'
 
+import _ from 'lodash';
+
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
@@ -42,6 +44,18 @@ class NewPostForm extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.state.open !== nextProps.params.postPropertiesOpen) {
+            if (nextProps.params.editedPostId !== null) {
+                const editedPost = _.find(this.props.posts, {'id': nextProps.params.editedPostId });
+
+                if (editedPost) {
+                    console.log();
+                    this.setState({
+                        postName: editedPost.text,
+                        dateTime: editedPost.publishAt
+                    });
+                    this.forceUpdate();
+                }
+            }
             this.setState({open: nextProps.params.postPropertiesOpen});
             return true;
         }
@@ -187,7 +201,8 @@ class NewPostForm extends React.Component {
 const mapStateToProps = (state) => ({
     channels: state.channels,
     tools: state.tools,
-    params: state.params
+    params: state.params,
+    posts: state.posts
 });
 
 NewPostForm = connect(

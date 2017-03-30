@@ -31,7 +31,8 @@ export const removePost = (id) => ({
     id
 });
 
-export const openPostPropertiesDialog = (open) => ({
+export const openPostPropertiesDialog = (open, postId) => ({
     type: 'OPEN_POST_PROP_DIALOG',
-    open
+    open,
+    postId
 });
