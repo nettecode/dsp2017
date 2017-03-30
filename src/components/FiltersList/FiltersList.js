@@ -7,45 +7,64 @@ import Checkbox from 'material-ui/Checkbox';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
-function FiltersList ({ name, options, onChange, value }) {
-    let checked, sum = value;
+class FiltersList extends React.Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            value: this.props.value
+        };
 
-    const handleCheck = function (event, isChecked) {
-        value =  Number(value) + (isChecked ? Number(event.target.value) : Number(-event.target.value));
-        onChange(value);
-    };
+        this.handleCheck = this.handleCheck.bind(this);
+    }
 
-    options = (options.reverse()).map(function (item, index) {
-        if (sum >= item.value) {
-            sum -= item.value;
-            checked = true;
-        } else {
-            checked = false;
-        }
+    handleCheck(event, isChecked) {
+        let value = Number(this.state.value) + (isChecked ? Number(event.target.value) : Number(-event.target.value));
+
+        this.props.onChange(value);
+
+        this.setState({
+            value: value
+        });
+    }
+
+    render() {
+        // console.log('value: ' + this.state.value);
+        let checked,
+            sum = this.state.value ? this.state.value : 0,
+            options = Object.assign([], this.props.options);
+
+        options = (options.reverse()).map(function (item, index) {
+            if (sum >= item.value) {
+                sum -= item.value;
+                checked = true;
+            } else {
+                checked = false;
+            }
+
+            return (
+                <ListItem key={index}
+                          leftCheckbox={<Checkbox onCheck={this.handleCheck} value={item.value} defaultChecked={checked}/>}
+                          primaryText={item.name}
+                />
+            );
+        }.bind(this));
+
+        options.reverse();
 
         return (
-            <ListItem key={index}
-                      leftCheckbox={<Checkbox onCheck={handleCheck} value={item.value} defaultChecked={checked}/>}
-                      primaryText={item.name}
-            />
+            <List>
+                <Subheader>{this.props.name}</Subheader>
+                {options}
+            </List>
         );
-    }.bind(this));
-
-    options.reverse();
-
-    return (
-        <List>
-            <Subheader>{name}</Subheader>
-            {options}
-        </List>
-    );
+    }
 }
 
 FiltersList.propTypes = {
     name: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.node.isRequired
+    onChange: PropTypes.func.isRequired
 };
 
 export default FiltersList;
