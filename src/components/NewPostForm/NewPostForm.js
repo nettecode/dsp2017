@@ -22,11 +22,6 @@ class NewPostForm extends React.Component {
      constructor(props) {
         super(props);
         this.state = {
-            postName: '',
-            description: '',
-            datetime: new Date(),
-            publishChannels: 0,
-            publishTools: 0,
             open: this.props.params.postPropertiesOpen
         };
 
@@ -48,13 +43,27 @@ class NewPostForm extends React.Component {
                 const editedPost = _.find(this.props.posts, {'id': nextProps.params.editedPostId });
 
                 if (editedPost) {
-                    console.log();
                     this.setState({
+                        title: 'Edytuj post #' + editedPost.id,
+                        rightBtnLabel: 'Zapisz',
                         postName: editedPost.text,
-                        dateTime: editedPost.publishAt
+                        description: editedPost.desc,
+                        postName: editedPost.text,
+                        datetime: new Date(editedPost.publishAt),
+                        publishChannels: editedPost.channels,
+                        publishTools: editedPost.tools
                     });
-                    this.forceUpdate();
                 }
+            } else {
+                this.setState({
+                    title: 'Planuj nowy post',
+                    rightBtnLabel: 'Dodaj',
+                    postName: '',
+                    description: '',
+                    datetime: new Date(),
+                    publishChannels: 0,
+                    publishTools: 0,
+                });
             }
             this.setState({open: nextProps.params.postPropertiesOpen});
             return true;
@@ -64,12 +73,10 @@ class NewPostForm extends React.Component {
     }
 
     handleChannelsChange(value) {
-        // const newValue = this.state.publishChannels + Number(value);
         this.setState({publishChannels: value});
     }
 
     handleToolsChange(value) {
-        // const newValue = this.state.publishTools + Number(value);
         this.setState({publishTools: value});
     }
 
@@ -84,6 +91,7 @@ class NewPostForm extends React.Component {
 
     handleTimeChange(event, data){
         let newDateTime = this.state.datetime;
+
         newDateTime.setHours(data.getHours());
         newDateTime.setMinutes(data.getMinutes());
 
@@ -92,6 +100,7 @@ class NewPostForm extends React.Component {
 
     handleDateChange(event, data){
         let newDateTime = this.state.datetime;
+
         newDateTime.setYear(data.getFullYear());
         newDateTime.setMonth(data.getMonth());
         newDateTime.setDate(data.getDate());
@@ -109,10 +118,6 @@ class NewPostForm extends React.Component {
         this.setState(this.basicState);
     }
 
-    // handleOpen() {
-    //     this.setState({open: true});
-    // }
-
     handleClose() {
         this.props.dispatch(openPostPropertiesDialog(false));
     }
@@ -125,7 +130,7 @@ class NewPostForm extends React.Component {
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
-                label="Dodaj"
+                label={this.state.rightBtnLabel}
                 primary={true}
                 keyboardFocused={true}
                 onTouchTap={this.handleSubmit}
@@ -136,7 +141,7 @@ class NewPostForm extends React.Component {
 
         <div>
             <Dialog
-                title="Planuj nowy post"
+                title={this.state.title}
                 actions={actions}
                 modal={false}
                 open={this.state.open}
@@ -148,6 +153,7 @@ class NewPostForm extends React.Component {
                             <TextField
                                 name="postName"
                                 floatingLabelText="Nazwa"
+                                defaultValue={this.state.postName}
                                 onChange={this.handleChange}
                             /><br/>
                             <TextField
@@ -157,6 +163,7 @@ class NewPostForm extends React.Component {
                                 rows={2}
                                 rowsMax={4}
                                 floatingLabelText="Opis"
+                                defaultValue={this.state.description}
                                 onChange={this.handleChange}
                             />
                             <p>Termin publikacji</p>

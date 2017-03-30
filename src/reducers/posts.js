@@ -4,16 +4,6 @@
 
 const initialState = [
     {
-        id: 0,
-        text: 'Cytaty motywacyjne',
-        completed: false,
-        desc: 'Seria cytatów motywacyjnych',
-        publishAt: '2017-03-20T13:00:00.000Z',
-        recurring: true,
-        channels: 3,
-        tools: 1
-    },
-    {
         id: 1,
         text: 'Tipy & Wskazówki',
         completed: true,
@@ -82,6 +72,16 @@ const initialState = [
         recurring: true,
         channels: 9,
         tools: 8
+    },
+    {
+        id: 8,
+        text: 'Cytaty motywacyjne',
+        completed: false,
+        desc: 'Seria cytatów motywacyjnych',
+        publishAt: '2017-03-20T13:00:00.000Z',
+        recurring: true,
+        channels: 3,
+        tools: 1
     }
 ];
 
