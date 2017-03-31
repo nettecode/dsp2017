@@ -20,7 +20,7 @@ class MainMenu extends React.Component {
     }
 
     handleFilterChange(value){
-        console.log("tbd");
+        console.log("newValue: " + Number(value));
     }
 
     render() {
@@ -41,13 +41,15 @@ class MainMenu extends React.Component {
                     <Divider />
                     <FiltersList
                         name="Kanały publikacji"
-                        channels={this.props.channels}
+                        options={this.props.channels}
                         onChange={this.handleFilterChange}
+                        value="31"
                     />
                     <FiltersList
                         name="Narzędzia publikacji"
-                        channels={this.props.tools}
+                        options={this.props.tools}
                         onChange={this.handleFilterChange}
+                        value="7"
                     />
                     {/*<Divider />*/}
                     {/*<List>*/}
