@@ -7,37 +7,63 @@ import Checkbox from 'material-ui/Checkbox';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
-const FiltersList = React.createClass({
-    handleCheck: function (event, isChecked) {
-        const value = isChecked ? event.target.value : -event.target.value;
+class FiltersList extends React.Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            value: this.props.value
+        };
+
+        this.handleCheck = this.handleCheck.bind(this);
+    }
+
+    handleCheck(event, isChecked) {
+        let value = Number(this.state.value) + (isChecked ? Number(event.target.value) : Number(-event.target.value));
+
         this.props.onChange(value);
-    },
 
-    render: function () {
-        let channels = this.props.channels;
+        this.setState({
+            value: value
+        });
+    }
 
-        channels = channels.map(function (item, index) {
+    render() {
+        // console.log('value: ' + this.state.value);
+        let checked,
+            sum = this.state.value ? this.state.value : 0,
+            options = Object.assign([], this.props.options);
+
+        options = (options.reverse()).map(function (item, index) {
+            if (sum >= item.value) {
+                sum -= item.value;
+                checked = true;
+            } else {
+                checked = false;
+            }
+
             return (
                 <ListItem key={index}
-                          leftCheckbox={<Checkbox onCheck={this.handleCheck} value={item.value}/>}
+                          leftCheckbox={<Checkbox onCheck={this.handleCheck} value={item.value} defaultChecked={checked}/>}
                           primaryText={item.name}
                 />
             );
         }.bind(this));
+
+        options.reverse();
+
         return (
-            <div>
-                <List>
-                    <Subheader>{this.props.name}</Subheader>
-                    {channels}
-                </List>
-            </div>
+            <List>
+                <Subheader>{this.props.name}</Subheader>
+                {options}
+            </List>
         );
     }
-});
+}
 
 FiltersList.propTypes = {
     name: PropTypes.string.isRequired,
-    channels: PropTypes.array.isRequired,
+    options: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired
 };
 
