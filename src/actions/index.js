@@ -4,6 +4,12 @@ export const addNewPost = (text) => ({
     text
 });
 
+export const editPost = (id, text) => ({
+    type: 'EDIT_POST',
+    id: id,
+    text
+});
+
 export const togglePostState = (id) => ({
     type: 'TOGGLE_POST_STATE',
     id
@@ -31,7 +37,8 @@ export const removePost = (id) => ({
     id
 });
 
-export const openPostPropertiesDialog = (open) => ({
+export const openPostPropertiesDialog = (open, postId) => ({
     type: 'OPEN_POST_PROP_DIALOG',
-    open
+    open,
+    postId
 });

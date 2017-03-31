@@ -3,7 +3,9 @@
  */
 import React from 'react';
 import { connect } from 'react-redux'
-import { addNewPost, openPostPropertiesDialog } from '../../actions'
+import { addNewPost, editPost, openPostPropertiesDialog } from '../../actions'
+
+import _ from 'lodash';
 
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
@@ -20,12 +22,8 @@ class NewPostForm extends React.Component {
      constructor(props) {
         super(props);
         this.state = {
-            postName: '',
-            description: '',
-            datetime: new Date(),
-            publishChannels: 0,
-            publishTools: 0,
-            open: this.props.params.postPropertiesOpen
+            open: this.props.params.postPropertiesOpen,
+            isPostEdited: false
         };
 
         this.basicState = this.state;
@@ -42,6 +40,37 @@ class NewPostForm extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.state.open !== nextProps.params.postPropertiesOpen) {
+            if (nextProps.params.editedPostId !== null) {
+                const editedPost = _.find(this.props.posts, {'id': nextProps.params.editedPostId });
+
+                if (editedPost) {
+                    this.setState({
+                        title: 'Edytuj post #' + editedPost.id,
+                        rightBtnLabel: 'Zapisz',
+                        isPostEdited: true,
+                        editedPostId: editedPost.id,
+                        postName: editedPost.text,
+                        description: editedPost.desc,
+                        completed: editedPost.completed,
+                        postName: editedPost.text,
+                        datetime: new Date(editedPost.publishAt),
+                        publishChannels: editedPost.channels,
+                        publishTools: editedPost.tools
+                    });
+                }
+            } else {
+                this.setState({
+                    title: 'Planuj nowy post',
+                    rightBtnLabel: 'Dodaj',
+                    isPostEdited: false,
+                    editedPostId: null,
+                    postName: '',
+                    description: '',
+                    datetime: new Date(),
+                    publishChannels: 0,
+                    publishTools: 0,
+                });
+            }
             this.setState({open: nextProps.params.postPropertiesOpen});
             return true;
         }
@@ -50,13 +79,11 @@ class NewPostForm extends React.Component {
     }
 
     handleChannelsChange(value) {
-        const newValue = this.state.publishChannels + Number(value);
-        this.setState({publishChannels: newValue});
+        this.setState({publishChannels: value});
     }
 
     handleToolsChange(value) {
-        const newValue = this.state.publishTools + Number(value);
-        this.setState({publishTools: newValue});
+        this.setState({publishTools: value});
     }
 
     handleChange(event, data) {
@@ -70,6 +97,7 @@ class NewPostForm extends React.Component {
 
     handleTimeChange(event, data){
         let newDateTime = this.state.datetime;
+
         newDateTime.setHours(data.getHours());
         newDateTime.setMinutes(data.getMinutes());
 
@@ -78,6 +106,7 @@ class NewPostForm extends React.Component {
 
     handleDateChange(event, data){
         let newDateTime = this.state.datetime;
+
         newDateTime.setYear(data.getFullYear());
         newDateTime.setMonth(data.getMonth());
         newDateTime.setDate(data.getDate());
@@ -89,15 +118,11 @@ class NewPostForm extends React.Component {
         event.preventDefault();
 
         const newPost = this.state;
-
-        this.props.dispatch(addNewPost(newPost));
+        
+        this.state.isPostEdited? this.props.dispatch(editPost(this.state.editedPostId, newPost)) : this.props.dispatch(addNewPost(newPost));
 
         this.setState(this.basicState);
     }
-
-    // handleOpen() {
-    //     this.setState({open: true});
-    // }
 
     handleClose() {
         this.props.dispatch(openPostPropertiesDialog(false));
@@ -111,7 +136,7 @@ class NewPostForm extends React.Component {
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
-                label="Dodaj"
+                label={this.state.rightBtnLabel}
                 primary={true}
                 keyboardFocused={true}
                 onTouchTap={this.handleSubmit}
@@ -122,7 +147,7 @@ class NewPostForm extends React.Component {
 
         <div>
             <Dialog
-                title="Planuj nowy post"
+                title={this.state.title}
                 actions={actions}
                 modal={false}
                 open={this.state.open}
@@ -134,6 +159,7 @@ class NewPostForm extends React.Component {
                             <TextField
                                 name="postName"
                                 floatingLabelText="Nazwa"
+                                defaultValue={this.state.postName}
                                 onChange={this.handleChange}
                             /><br/>
                             <TextField
@@ -143,6 +169,7 @@ class NewPostForm extends React.Component {
                                 rows={2}
                                 rowsMax={4}
                                 floatingLabelText="Opis"
+                                defaultValue={this.state.description}
                                 onChange={this.handleChange}
                             />
                             <p>Termin publikacji</p>
@@ -165,15 +192,17 @@ class NewPostForm extends React.Component {
                         <div>
                             <FiltersList
                                 name="Kanały publikacji"
-                                channels={this.props.channels}
+                                options={this.props.channels}
                                 onChange={this.handleChannelsChange}
+                                value={this.state.publishChannels}
                             />
                         </div>
                         <div>
                             <FiltersList
                                 name="Narzędzia publikacji"
-                                channels={this.props.tools}
+                                options={this.props.tools}
                                 onChange={this.handleToolsChange}
+                                value={this.state.publishTools}
                             />
                         </div>
                     </div>
@@ -187,7 +216,8 @@ class NewPostForm extends React.Component {
 const mapStateToProps = (state) => ({
     channels: state.channels,
     tools: state.tools,
-    params: state.params
+    params: state.params,
+    posts: state.posts
 });
 
 NewPostForm = connect(
