@@ -23,7 +23,8 @@ class NewPostForm extends React.Component {
         super(props);
         this.state = {
             open: this.props.params.postPropertiesOpen,
-            isPostEdited: false
+            isPostEdited: false,
+            rightBtnLabel: 'Dodaj'
         };
 
         this.basicState = this.state;
@@ -45,7 +46,7 @@ class NewPostForm extends React.Component {
 
                 if (editedPost) {
                     this.setState({
-                        title: 'Edytuj post #' + editedPost.id,
+                        title: 'Edytuj post',
                         rightBtnLabel: 'Zapisz',
                         isPostEdited: true,
                         editedPostId: editedPost.id,
