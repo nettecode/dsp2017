@@ -62,7 +62,6 @@ class PostItem extends React.Component {
 
 PostItem.propTypes = {
     post: PropTypes.object.isRequired,
-    // editPost: PropTypes.func.isRequired,
     removePost: PropTypes.func.isRequired,
     togglePostState: PropTypes.func.isRequired
 };

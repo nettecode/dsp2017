@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux'
-import { addNewPost, openPostPropertiesDialog } from '../../actions'
+import { addNewPost, editPost, openPostPropertiesDialog } from '../../actions'
 
 import _ from 'lodash';
 
@@ -22,7 +22,8 @@ class NewPostForm extends React.Component {
      constructor(props) {
         super(props);
         this.state = {
-            open: this.props.params.postPropertiesOpen
+            open: this.props.params.postPropertiesOpen,
+            isPostEdited: false
         };
 
         this.basicState = this.state;
@@ -46,8 +47,11 @@ class NewPostForm extends React.Component {
                     this.setState({
                         title: 'Edytuj post #' + editedPost.id,
                         rightBtnLabel: 'Zapisz',
+                        isPostEdited: true,
+                        editedPostId: editedPost.id,
                         postName: editedPost.text,
                         description: editedPost.desc,
+                        completed: editedPost.completed,
                         postName: editedPost.text,
                         datetime: new Date(editedPost.publishAt),
                         publishChannels: editedPost.channels,
@@ -58,6 +62,8 @@ class NewPostForm extends React.Component {
                 this.setState({
                     title: 'Planuj nowy post',
                     rightBtnLabel: 'Dodaj',
+                    isPostEdited: false,
+                    editedPostId: null,
                     postName: '',
                     description: '',
                     datetime: new Date(),
@@ -112,8 +118,8 @@ class NewPostForm extends React.Component {
         event.preventDefault();
 
         const newPost = this.state;
-
-        this.props.dispatch(addNewPost(newPost));
+        
+        this.state.isPostEdited? this.props.dispatch(editPost(this.state.editedPostId, newPost)) : this.props.dispatch(addNewPost(newPost));
 
         this.setState(this.basicState);
     }

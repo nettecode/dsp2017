@@ -4,6 +4,12 @@ export const addNewPost = (text) => ({
     text
 });
 
+export const editPost = (id, text) => ({
+    type: 'EDIT_POST',
+    id: id,
+    text
+});
+
 export const togglePostState = (id) => ({
     type: 'TOGGLE_POST_STATE',
     id
