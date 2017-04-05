@@ -2,7 +2,7 @@
  * Created by nette on 10.03.17.
  */
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import FontIcon from 'material-ui/FontIcon';
 
@@ -18,9 +18,9 @@ const formatDate = function(date) {
 
 class PostItem extends React.Component {
     render() {
-        const { post, removePost, togglePostState } = this.props
+        const { post, removePost, togglePostState, channels } = this.props;
 
-        const availableChannels = (Object.assign([], this.props.channels)).reverse();
+        const availableChannels = (Object.assign([], channels)).reverse();
         let postChannels = post.channels;
 
         let channelsIcons = availableChannels.map(function (item, index) {
@@ -32,13 +32,15 @@ class PostItem extends React.Component {
                     </li>
                 );
             }
-        });
+        }).reverse();
 
         return (
             <li className="postItem">
-                <a href="#" onClick={() => togglePostState(post.id)}> <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon></a>
+                <a href="#" onClick={() => togglePostState(post.id)}>
+                    <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon>
+                </a>
                 <div className="postDetails">
-                    <label>{post.text}</label>
+                    <label>{post.name}</label>
                     <div>
                         <label>N: {post.tools}</label>
                         <ul className="socialMediaIcons">
@@ -52,7 +54,9 @@ class PostItem extends React.Component {
                 <div>
                     <a href="#" onClick={() => {
                         this.props.dispatch(openPostPropertiesDialog(true, post.id));
-                    }}><FontIcon className="material-icons">mode edit</FontIcon></a>
+                    }}>
+                        <FontIcon className="material-icons">mode edit</FontIcon>
+                    </a>
                     <a href="#" onClick={() => removePost(post.id)}><FontIcon className="material-icons">delete</FontIcon></a>
                 </div>
             </li>
@@ -62,16 +66,9 @@ class PostItem extends React.Component {
 
 PostItem.propTypes = {
     post: PropTypes.object.isRequired,
-    removePost: PropTypes.func.isRequired,
-    togglePostState: PropTypes.func.isRequired
+    channels: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    channels: state.channels
-});
-
-PostItem = connect(
-    mapStateToProps
-)(PostItem);
+PostItem = connect()(PostItem);
 
 export default PostItem;

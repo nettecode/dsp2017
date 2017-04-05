@@ -8,7 +8,8 @@ import * as PostActions from '../../actions'
 
 const mapStateToProps = (state) => ({
     // posts: getVisiblePosts(state.posts, state.visibilityFilter)
-    posts: state.posts
+    posts: state.posts,
+    channels: state.channels
 });
 
 const mapDispatchToProps = dispatch => ({
