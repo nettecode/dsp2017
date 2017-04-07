@@ -25,7 +25,7 @@ class MainMenu extends React.Component {
     }
 
     handleFilterOptionChange(value) {
-        console.log('value: ' + value);
+        // filter list
         // update visible list
     }
 
@@ -48,7 +48,7 @@ class MainMenu extends React.Component {
                     <FilterMenu
                         name="Kanały publikacji"
                         options={this.props.channels}
-                        value={this.props.params.filterChannels}
+                        value={this.props.params.filter.channels}
                         onChange={this.handleFilterOptionChange}
                     />
                     <Divider />

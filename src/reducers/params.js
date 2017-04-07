@@ -7,9 +7,11 @@
 const initialState = {
     postPropertiesOpen: false,
     editedPostId: null,
-    filterChannels: 0,
-    filterTools: 0,
-    filterStatus: 0
+    filter: {
+        channels: 1,
+        tools: 0,
+        status: 0
+    }
 };
 
 const params = (state = initialState, action) => {
