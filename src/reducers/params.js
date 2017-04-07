@@ -6,7 +6,10 @@
 // TODO: Read from database
 const initialState = {
     postPropertiesOpen: false,
-    editedPostId: null
+    editedPostId: null,
+    filterChannels: 0,
+    filterTools: 0,
+    filterStatus: 0
 };
 
 const params = (state = initialState, action) => {

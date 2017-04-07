@@ -9,6 +9,7 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 
 import FiltersList from '../FiltersList/FiltersList';
+import FilterMenu from '../FilterMenu/FilterMenu';
 
 import './mainMenu.css';
 
@@ -21,6 +22,11 @@ class MainMenu extends React.Component {
 
     handleFilterChange(value){
         console.log("newValue: " + Number(value));
+    }
+
+    handleFilterOptionChange(value) {
+        console.log('value: ' + value);
+        // update visible list
     }
 
     render() {
@@ -38,6 +44,13 @@ class MainMenu extends React.Component {
                             {/*primaryText="Baza pomysłów"*/}
                         {/*/>*/}
                     </List>
+                    <Divider />
+                    <FilterMenu
+                        name="Kanały publikacji"
+                        options={this.props.channels}
+                        value={this.props.params.filterChannels}
+                        onChange={this.handleFilterOptionChange}
+                    />
                     <Divider />
                     <FiltersList
                         name="Kanały publikacji"
@@ -65,7 +78,8 @@ class MainMenu extends React.Component {
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
-    tools: state.tools
+    tools: state.tools,
+    params: state.params
 });
 
 MainMenu = connect(
