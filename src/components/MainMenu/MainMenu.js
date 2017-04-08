@@ -9,6 +9,8 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 
 import FiltersList from '../FiltersList/FiltersList';
+import FilterMenu from '../FilterMenu/FilterMenu';
+import { filterChannel, filterTools } from '../../actions';
 
 import './mainMenu.css';
 
@@ -16,11 +18,21 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleFilterChange = this.handleFilterChange.bind(this);
+        // this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.handleChannelChange = this.handleChannelChange.bind(this);
+        this.handleToolChange = this.handleToolChange.bind(this);
     }
 
-    handleFilterChange(value){
-        console.log("newValue: " + Number(value));
+    // handleFilterChange(value){
+    //     console.log("newValue: " + Number(value));
+    // }
+
+    handleChannelChange(value) {
+        this.props.dispatch(filterChannel(value));
+    }
+
+    handleToolChange(value) {
+        this.props.dispatch(filterTools(value));
     }
 
     render() {
@@ -39,18 +51,31 @@ class MainMenu extends React.Component {
                         {/*/>*/}
                     </List>
                     <Divider />
-                    <FiltersList
-                        name="Kanały publikacji"
+                    <FilterMenu
+                        title="Kanały publikacji"
                         options={this.props.channels}
-                        onChange={this.handleFilterChange}
-                        value="31"
+                        value={this.props.params.channelsFilter}
+                        onChange={this.handleChannelChange}
                     />
-                    <FiltersList
-                        name="Narzędzia publikacji"
+                    <FilterMenu
+                        title="Narzędzia publikacji"
                         options={this.props.tools}
-                        onChange={this.handleFilterChange}
-                        value="7"
+                        value={this.props.params.toolsFilter}
+                        onChange={this.handleToolChange}
                     />
+                    {/*<Divider />*/}
+                    {/*<FiltersList*/}
+                        {/*name="Kanały publikacji"*/}
+                        {/*options={this.props.channels}*/}
+                        {/*onChange={this.handleFilterChange}*/}
+                        {/*value="31"*/}
+                    {/*/>*/}
+                    {/*<FiltersList*/}
+                        {/*name="Narzędzia publikacji"*/}
+                        {/*options={this.props.tools}*/}
+                        {/*onChange={this.handleFilterChange}*/}
+                        {/*value="7"*/}
+                    {/*/>*/}
                     {/*<Divider />*/}
                     {/*<List>*/}
                         {/*<ListItem*/}
@@ -65,7 +90,8 @@ class MainMenu extends React.Component {
 
 const mapStateToProps = (state) => ({
     channels: state.channels,
-    tools: state.tools
+    tools: state.tools,
+    params: state.params
 });
 
 MainMenu = connect(
