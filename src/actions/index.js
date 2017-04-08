@@ -1,3 +1,5 @@
+export const FILTER_CHANNEL = 'FILTER_CHANNEL';
+
 export const addNewPost = (text) => ({
     type: 'ADD_POST',
     id: Number(new Date()),
@@ -13,11 +15,6 @@ export const editPost = (id, text) => ({
 export const togglePostState = (id) => ({
     type: 'TOGGLE_POST_STATE',
     id
-});
-
-export const setVisibilityFilter = (filter) => ({
-    type: 'SET_VISIBILITY_FILTER',
-    filter
 });
 
 export const addNewChannel = (text) => ({
@@ -41,4 +38,9 @@ export const openPostPropertiesDialog = (open, postId) => ({
     type: 'OPEN_POST_PROP_DIALOG',
     open,
     postId
+});
+
+export const filterChannel = (value) => ({
+    type: FILTER_CHANNEL,
+    value
 });

@@ -7,11 +7,9 @@
 const initialState = {
     postPropertiesOpen: false,
     editedPostId: null,
-    filter: {
-        channels: 1,
-        tools: 0,
-        status: 0
-    }
+    channelsFilter: 1,
+    toolsFilter: 0,
+    statusFilter: 0
 };
 
 const params = (state = initialState, action) => {
@@ -21,6 +19,11 @@ const params = (state = initialState, action) => {
                 ...state,
                 postPropertiesOpen: action.open,
                 editedPostId: action.postId || null
+            };
+        case 'FILTER_CHANNEL':
+            return {
+                ...state,
+                channelsFilter: action.value
             };
         default:
             return state

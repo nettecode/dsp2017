@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper';
 
 import FiltersList from '../FiltersList/FiltersList';
 import FilterMenu from '../FilterMenu/FilterMenu';
+import { filterChannel } from '../../actions';
 
 import './mainMenu.css';
 
@@ -18,6 +19,7 @@ class MainMenu extends React.Component {
         super(props);
 
         this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.handleFilterOptionChange = this.handleFilterOptionChange.bind(this);
     }
 
     handleFilterChange(value){
@@ -27,6 +29,7 @@ class MainMenu extends React.Component {
     handleFilterOptionChange(value) {
         // filter list
         // update visible list
+        this.props.dispatch(filterChannel(value));
     }
 
     render() {
@@ -48,7 +51,7 @@ class MainMenu extends React.Component {
                     <FilterMenu
                         name="Kanały publikacji"
                         options={this.props.channels}
-                        value={this.props.params.filter.channels}
+                        value={this.props.params.channelsFilter}
                         onChange={this.handleFilterOptionChange}
                     />
                     <Divider />
