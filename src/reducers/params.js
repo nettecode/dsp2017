@@ -4,7 +4,8 @@
 /** App params **/
 import {
     OPEN_POST_PROP_DIALOG,
-    FILTER_CHANNEL
+    FILTER_CHANNEL,
+    FILTER_TOOLS
 } from '../constants/ActionTypes'
 
 // TODO: Read from database
@@ -28,6 +29,11 @@ const params = (state = initialState, action) => {
             return {
                 ...state,
                 channelsFilter: action.value
+            };
+        case FILTER_TOOLS:
+            return {
+                ...state,
+                toolsFilter: action.value
             };
         default:
             return state

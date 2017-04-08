@@ -8,3 +8,4 @@ export const REMOVE_POST = 'REMOVE_POST';
 export const OPEN_POST_PROP_DIALOG = 'OPEN_POST_PROP_DIALOG';
 
 export const FILTER_CHANNEL = 'FILTER_CHANNEL';
+export const FILTER_TOOLS = 'FILTER_TOOLS';

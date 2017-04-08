@@ -32,3 +32,8 @@ export const filterChannel = (value) => ({
     type: types.FILTER_CHANNEL,
     value
 });
+
+export const filterTools = (value) => ({
+    type: types.FILTER_TOOLS,
+    value
+});

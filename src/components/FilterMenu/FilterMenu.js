@@ -32,7 +32,7 @@ class FilterMenu extends React.Component {
 
         return (
             <div>
-                <Subheader>{this.props.name}</Subheader>
+                <Subheader>{this.props.title}</Subheader>
                 <DropDownMenu value={this.state.value} onChange={this.handleChange}>
                     <MenuItem value={0} primaryText="Wszystkie" />
                     {options}
@@ -43,7 +43,7 @@ class FilterMenu extends React.Component {
 };
 
 FilterMenu.propTypes = {
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired
