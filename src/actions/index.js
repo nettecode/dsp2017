@@ -1,46 +1,34 @@
-export const FILTER_CHANNEL = 'FILTER_CHANNEL';
+import * as types from '../constants/ActionTypes'
 
 export const addNewPost = (text) => ({
-    type: 'ADD_POST',
+    type: types.ADD_POST,
     id: Number(new Date()),
     text
 });
 
 export const editPost = (id, text) => ({
-    type: 'EDIT_POST',
+    type: types.EDIT_POST,
     id: id,
     text
 });
 
 export const togglePostState = (id) => ({
-    type: 'TOGGLE_POST_STATE',
+    type: types.TOGGLE_POST_STATE,
     id
 });
 
-export const addNewChannel = (text) => ({
-    type: 'ADD_CHANNEL',
-    id: Number(new Date()),
-    text
-});
-
-export const addNewTool = (text) => ({
-    type: 'ADD_TOOL',
-    id: Number(new Date()),
-    text
-});
-
 export const removePost = (id) => ({
-    type: 'REMOVE_POST',
+    type: types.REMOVE_POST,
     id
 });
 
 export const openPostPropertiesDialog = (open, postId) => ({
-    type: 'OPEN_POST_PROP_DIALOG',
+    type: types.OPEN_POST_PROP_DIALOG,
     open,
     postId
 });
 
 export const filterChannel = (value) => ({
-    type: FILTER_CHANNEL,
+    type: types.FILTER_CHANNEL,
     value
 });

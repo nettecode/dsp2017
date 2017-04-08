@@ -2,6 +2,10 @@
  * Created by nette on 25.03.17.
  */
 /** App params **/
+import {
+    OPEN_POST_PROP_DIALOG,
+    FILTER_CHANNEL
+} from '../constants/ActionTypes'
 
 // TODO: Read from database
 const initialState = {
@@ -14,13 +18,13 @@ const initialState = {
 
 const params = (state = initialState, action) => {
     switch (action.type) {
-        case 'OPEN_POST_PROP_DIALOG':
+        case OPEN_POST_PROP_DIALOG:
             return {
                 ...state,
                 postPropertiesOpen: action.open,
                 editedPostId: action.postId || null
             };
-        case 'FILTER_CHANNEL':
+        case FILTER_CHANNEL:
             return {
                 ...state,
                 channelsFilter: action.value

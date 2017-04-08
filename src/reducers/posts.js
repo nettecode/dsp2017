@@ -1,6 +1,12 @@
 /**
  * Created by nette on 07.03.17.
  */
+import {
+    ADD_POST,
+    EDIT_POST,
+    TOGGLE_POST_STATE,
+    REMOVE_POST
+} from '../constants/ActionTypes'
 
 const initialState = [
     {
@@ -87,7 +93,7 @@ const initialState = [
 
 const post = (state, action) => {
     switch (action.type) {
-        case 'ADD_POST':
+        case ADD_POST:
             return {
                 id: action.id,
                 name: action.text.postName,
@@ -97,7 +103,7 @@ const post = (state, action) => {
                 channels: action.text.publishChannels,
                 tools: action.text.publishTools
             };
-        case 'EDIT_POST':
+        case EDIT_POST:
             if (state.id === action.id) {
                 return {...state,
                     name: action.text.postName,
@@ -109,7 +115,7 @@ const post = (state, action) => {
                 };
             }
             return state;
-        case 'TOGGLE_POST_STATE':
+        case TOGGLE_POST_STATE:
             if (state.id !== action.id) {
                 return state
             }
@@ -124,20 +130,20 @@ const post = (state, action) => {
 
 const posts = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_POST':
+        case ADD_POST:
             return [
                 ...state,
                 post(undefined, action)
             ];
-        case 'EDIT_POST':
+        case EDIT_POST:
             return state.map(p =>
                 post(p, action)
             );
-        case 'TOGGLE_POST_STATE':
+        case TOGGLE_POST_STATE:
             return state.map(p =>
                 post(p, action)
             );
-        case 'REMOVE_POST':
+        case REMOVE_POST:
             return state.filter(post => post.id !== action.id);
         default:
             return state

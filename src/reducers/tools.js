@@ -1,6 +1,10 @@
 /**
  * Created by nette on 20.03.17.
  */
+import {
+
+} from '../constants/ActionTypes'
+
 let lastValue = 8; // read from settings
 
 const initialState = [
