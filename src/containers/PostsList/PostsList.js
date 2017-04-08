@@ -2,14 +2,15 @@
  * Created by nette on 13.03.17.
  */
 import React, { PropTypes } from 'react'
-import PostItem from '../PostItem/PostItem'
+import PostItem from '../../components/PostItem/PostItem'
 
-const PostsList = ({ posts, actions }) => (
+const PostsList = ({ posts, actions, channels }) => (
     <ul>
         {posts.map(post =>
             <PostItem
                 key={post.id}
                 post={post}
+                channels={channels}
                 {...actions}
             />
         )}
@@ -20,9 +21,10 @@ PostsList.propTypes = {
     posts: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         completed: PropTypes.bool.isRequired,
-        text: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    channels: PropTypes.array.isRequired
 };
 
 export default PostsList

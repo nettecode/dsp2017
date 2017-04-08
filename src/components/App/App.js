@@ -14,7 +14,7 @@ import MainMenu from '../MainMenu/MainMenu';
 import { openPostPropertiesDialog } from '../../actions';
 import NewPostForm from '../NewPostForm/NewPostForm';
 
-import VisiblePostsList from '../VisiblePostsList/VisiblePostsList';
+import VisiblePostsList from '../../containers/VisiblePostsList/VisiblePostsList';
 
 import './App.css'
 

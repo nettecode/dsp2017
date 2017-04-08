@@ -50,10 +50,10 @@ class NewPostForm extends React.Component {
                         rightBtnLabel: 'Zapisz',
                         isPostEdited: true,
                         editedPostId: editedPost.id,
-                        postName: editedPost.text,
-                        description: editedPost.desc,
+                        postName: editedPost.name,
+                        description: editedPost.description,
                         completed: editedPost.completed,
-                        postName: editedPost.text,
+                        postName: editedPost.name,
                         datetime: new Date(editedPost.publishAt),
                         publishChannels: editedPost.channels,
                         publishTools: editedPost.tools
