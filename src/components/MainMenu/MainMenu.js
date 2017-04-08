@@ -64,19 +64,6 @@ class MainMenu extends React.Component {
                         onChange={this.handleToolChange}
                     />
                     {/*<Divider />*/}
-                    {/*<FiltersList*/}
-                        {/*name="Kanały publikacji"*/}
-                        {/*options={this.props.channels}*/}
-                        {/*onChange={this.handleFilterChange}*/}
-                        {/*value="31"*/}
-                    {/*/>*/}
-                    {/*<FiltersList*/}
-                        {/*name="Narzędzia publikacji"*/}
-                        {/*options={this.props.tools}*/}
-                        {/*onChange={this.handleFilterChange}*/}
-                        {/*value="7"*/}
-                    {/*/>*/}
-                    {/*<Divider />*/}
                     {/*<List>*/}
                         {/*<ListItem*/}
                             {/*primaryText="Ustawienia"*/}
