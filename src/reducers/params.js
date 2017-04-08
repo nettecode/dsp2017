@@ -12,7 +12,7 @@ import {
 const initialState = {
     postPropertiesOpen: false,
     editedPostId: null,
-    channelsFilter: 1,
+    channelsFilter: 0,
     toolsFilter: 0,
     statusFilter: 0
 };
