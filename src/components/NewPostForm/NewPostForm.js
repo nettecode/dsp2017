@@ -54,7 +54,7 @@ class NewPostForm extends React.Component {
                         description: editedPost.description,
                         completed: editedPost.completed,
                         // datetime: new Date(editedPost.publishAt),
-                        datetime: nextProps.params.date,
+                        datetime: editedPost.start,
                         publishChannels: editedPost.channels,
                         publishTools: editedPost.tools
                     });

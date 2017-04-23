@@ -38,3 +38,9 @@ export const filterTools = (value) => ({
     type: types.FILTER_TOOLS,
     value
 });
+
+export const changePostDateTime = (id, newDateTime) => ({
+    type: types.CHANGE_DATE_TIME,
+    id,
+    newDateTime
+})

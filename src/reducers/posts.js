@@ -5,8 +5,11 @@ import {
     ADD_POST,
     EDIT_POST,
     TOGGLE_POST_STATE,
-    REMOVE_POST
+    REMOVE_POST,
+    CHANGE_DATE_TIME
 } from '../constants/ActionTypes'
+
+import moment from 'moment';
 
 const initialState = [
     {
@@ -108,6 +111,7 @@ const post = (state, action) => {
                 completed: false,
                 description: action.text.description,
                 start: action.text.datetime,
+                end: new moment(action.text.datetime).add('2','hours').toDate(),
                 channels: action.text.publishChannels,
                 tools: action.text.publishTools
             };
@@ -118,6 +122,7 @@ const post = (state, action) => {
                     completed: action.text.completed,
                     description: action.text.description,
                     start: action.text.datetime,
+                    end: new moment(action.text.datetime).add('2','hours').toDate(),
                     channels: action.text.publishChannels,
                     tools: action.text.publishTools
                 };
@@ -130,6 +135,15 @@ const post = (state, action) => {
             return {
                 ...state,
                 completed: !state.completed
+            };
+        case CHANGE_DATE_TIME:
+            if (state.id !== action.id) {
+                return state
+            }
+            return {
+                ...state,
+                start: action.newDateTime,
+                end: new moment(action.newDateTime).add('2','hours').toDate(),
             };
         default:
             return state;
@@ -153,6 +167,10 @@ const posts = (state = initialState, action) => {
             );
         case REMOVE_POST:
             return state.filter(post => post.id !== action.id);
+        case CHANGE_DATE_TIME:
+            return state.map(p =>
+                post(p, action)
+            );
         default:
             return state
     }

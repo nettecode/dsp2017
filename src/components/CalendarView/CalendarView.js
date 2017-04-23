@@ -13,7 +13,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import moment from 'moment';
 
-import { openPostPropertiesDialog } from '../../actions';
+import { openPostPropertiesDialog, changePostDateTime } from '../../actions';
 import { getVisiblePosts } from '../../reducers';
 
 import './CalendarView.css';
@@ -32,6 +32,12 @@ class CalendarView extends React.Component {
         this.moveEvent = this.moveEvent.bind(this)
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.posts !== this.state.events) {
+            this.state.events = nextProps.posts;
+        }
+    }
+
     moveEvent({ event, start, end }) {
         const { events } = this.state;
 
@@ -45,7 +51,7 @@ class CalendarView extends React.Component {
             events: nextEvents
         })
 
-        alert(`${event.title} was dropped onto ${event.start}`);
+        this.props.dispatch(changePostDateTime(event.id, start));
     }
 
     render (){
@@ -58,7 +64,7 @@ class CalendarView extends React.Component {
                     defaultDate={new Date(2017,3,23)}
                     defaultView='week'
                     onEventDrop={this.moveEvent}
-                    onSelectEvent={event => console.log(event.title)}
+                    onSelectEvent={event => this.props.dispatch(openPostPropertiesDialog(true,event.id))}
                     onSelectSlot={(slotInfo) => this.props.dispatch(openPostPropertiesDialog(true,null,slotInfo.start))}
                 />
             </div>
