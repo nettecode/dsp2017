@@ -127,7 +127,7 @@ class CalendarView extends React.Component {
                     defaultView='week'
                     onEventDrop={this.moveEvent}
                     onSelectEvent={event => console.log(event.title)}
-                    onSelectSlot={(slotInfo) => this.props.dispatch(openPostPropertiesDialog(true))}
+                    onSelectSlot={(slotInfo) => this.props.dispatch(openPostPropertiesDialog(true,null,slotInfo.start))}
                 />
             </div>
         )
