@@ -40,14 +40,14 @@ class PostItem extends React.Component {
                     <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon>
                 </a>
                 <div className="postDetails">
-                    <label>{post.name}</label>
+                    <label>{post.title}</label>
                     <div>
                         <label>N: {post.tools}</label>
                         <ul className="socialMediaIcons">
                             {channelsIcons}
                         </ul>
                         <FontIcon className="material-icons" style={{visibility: post.recurring ? 'visible' : 'hidden'}}>autorenew</FontIcon>
-                        <label>{formatDate(post.publishAt)}</label>
+                        <label>{formatDate(post.start)}</label>
                         {/*<FontIcon className="material-icons">alarm on</FontIcon>*/}
                     </div>
                 </div>
