@@ -14,87 +14,9 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import moment from 'moment';
 
 import { openPostPropertiesDialog } from '../../actions';
+import { getVisiblePosts } from '../../reducers';
 
 import './CalendarView.css';
-
-// const myEventsList = [
-// //     {
-// //         'title': 'All Day Event',
-// //         'allDay': true,
-// //         'start': new Date(2017, 3, 20),
-// //         'end': new Date(2017, 3, 20)
-// //     },
-// //     {
-// //         'title': 'Long Event',
-// //         'start': new Date(2017, 3, 17),
-// //         'end': new Date(2017, 3, 20)
-// //     },
-// //
-// //     {
-// //         'title': 'DTS STARTS',
-// //         'start': new Date(2017, 3, 13, 0, 0, 0),
-// //         'end': new Date(2017, 3, 20, 0, 0, 0)
-// //     },
-// //
-// //     {
-// //         'title': 'DTS ENDS',
-// //         'start': new Date(2017, 3, 16, 0, 0, 0),
-// //         'end': new Date(2017, 3, 23, 0, 0, 0)
-// //     },
-// //
-// //     {
-// //         'title': 'Some Event',
-// //         'start': new Date(2017, 3, 19, 0, 0, 0),
-// //         'end': new Date(2017, 3, 19, 0, 0, 0)
-// //     },
-// //     {
-// //         'title': 'Conference',
-// //         'start': new Date(2017, 3, 21),
-// //         'end': new Date(2017, 3, 23),
-// //         'desc': 'Big conference for important people'
-// //     },
-//     {
-//         'title': 'Meeting #1',
-//         'start': new Date('2017-04-23T13:00:00.000Z'),
-//         'end': new Date('2017-04-23T14:00:00.000Z'),
-//         // 'end': new moment("2017-04-22"),
-//         'desc': 'Pre-meeting meeting, to prepare for the meeting'
-//     },
-//     {
-//         'title': 'Lunch',
-//         'start':new Date(2017, 3, 22, 12, 0, 0, 0),
-//         'end': new Date(2017, 3, 22, 13, 0, 0, 0),
-//         'desc': 'Power lunch'
-//     },
-//     {
-//         'title': 'Meeting',
-//         'start':new Date(2017, 3, 22,14, 0, 0, 0),
-//         'end': new Date(2017, 3, 22,15, 0, 0, 0)
-//     },
-//     {
-//         'title': 'Happy Hour',
-//         'start':new Date(2017, 3, 22, 17, 0, 0, 0),
-//         'end': new Date(2017, 3, 22, 17, 30, 0, 0),
-//         'desc': 'Most important meal of the day'
-//     },
-//     {
-//         'title': 'Dinner',
-//         'start':new Date(2017, 3, 22, 20, 0, 0, 0),
-//         'end': new Date(2017, 3, 22, 21, 0, 0, 0)
-//     },
-//     {
-//         'title': 'Birthday Party',
-//         'start':new Date(2017, 3, 23, 7, 0, 0),
-//         'end': new Date(2017, 3, 23, 10, 30, 0)
-//     },
-//     {
-//         'title': 'Meeting #3',
-//         'start': new moment().toDate(),
-//         'end': new moment().add('1','hours').toDate(),
-//         // 'end': new moment("2017-04-22"),
-//         'desc': 'Pre-meeting meeting, to prepare for the meeting'
-//     },
-// ];
 
 BigCalendar.momentLocalizer(moment);
 
@@ -145,7 +67,7 @@ class CalendarView extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    posts: state.posts
+    posts: getVisiblePosts(state),
 });
 
 CalendarView = connect(
