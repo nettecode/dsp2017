@@ -2,11 +2,18 @@
  * Created by nette on 19.04.17.
  */
 import React from 'react';
+import { connect } from 'react-redux';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import BigCalendar from 'react-big-calendar';
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 import moment from 'moment';
+
+import { openPostPropertiesDialog } from '../../actions';
 
 const myEventsList = [
     {
@@ -81,29 +88,52 @@ const myEventsList = [
 
 BigCalendar.momentLocalizer(moment);
 
-const CalendarView = React.createClass({
-    onSelectEvent: function (event) {
-        console.log('event selected');
-    },
+const DragAndDropCalendar = withDragAndDrop(BigCalendar);
 
-    render: function () {
+class CalendarView extends React.Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            events: myEventsList
+        }
+
+        this.moveEvent = this.moveEvent.bind(this)
+    }
+
+    moveEvent({ event, start, end }) {
+        const { events } = this.state;
+
+        const idx = events.indexOf(event);
+        const updatedEvent = { ...event, start, end };
+
+        const nextEvents = [...events]
+        nextEvents.splice(idx, 1, updatedEvent)
+
+        this.setState({
+            events: nextEvents
+        })
+
+        alert(`${event.title} was dropped onto ${event.start}`);
+    }
+
+    render (){
         return (
             <div>
                 <h2>Kalendarz</h2>
-                <BigCalendar
+                <DragAndDropCalendar
                     selectable
-                    events={myEventsList}
-                    defaultDate={new Date()}
+                    events={this.state.events}
+                    defaultDate={new Date(2017,3,20)}
                     defaultView='week'
-                    onSelectEvent={event => onSelectEvent(event)}
-                    onSelectSlot={(slotInfo) => console.log(
-                        `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-                        `\nend: ${slotInfo.end.toLocaleString()}`
-                    )}
+                    onEventDrop={this.moveEvent}
+                    onSelectEvent={event => console.log(event.title)}
+                    onSelectSlot={(slotInfo) => this.props.dispatch(openPostPropertiesDialog(true))}
                 />
             </div>
-        );
+        )
     }
-});
+};
 
-export default CalendarView;
+CalendarView = connect()(CalendarView);
+
+export default DragDropContext(HTML5Backend)(CalendarView);
