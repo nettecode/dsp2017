@@ -17,8 +17,8 @@ const initialState = [
         title: 'Tipy & Wskazówki',
         completed: true,
         description: 'Seria tipów i wskazówek',
-        start: new Date('2017-04-22T13:00:00.000Z'),
-        end: new Date('2017-04-22T14:00:00.000Z'),
+        start: new Date('2017-04-28T11:00:00.000Z'),
+        end: new Date('2017-04-28T13:00:00.000Z'),
         recurring: true,
         channels: 12,
         tools: 1
@@ -29,7 +29,7 @@ const initialState = [
         completed: false,
         description: '',
         start: new Date('2017-04-23T13:00:00.000Z'),
-        end: new Date('2017-04-23T14:00:00.000Z'),
+        end: new Date('2017-04-23T15:00:00.000Z'),
         recurring: false,
         channels: 16,
         tools: 4
@@ -40,7 +40,7 @@ const initialState = [
         completed: false,
         description: '',
         start: new Date('2017-04-25T10:00:00.000Z'),
-        end: new Date('2017-04-25T11:00:00.000Z'),
+        end: new Date('2017-04-25T12:00:00.000Z'),
         recurring: false,
         channels: 15,
         tools: 1
@@ -51,7 +51,7 @@ const initialState = [
         completed: false,
         description: '',
         start: new Date('2017-03-26T13:00:00.000Z'),
-        end: new Date('2017-03-26T14:00:00.000Z'),
+        end: new Date('2017-03-26T15:00:00.000Z'),
         recurring: false,
         channels: 1,
         tools: 8
@@ -61,8 +61,8 @@ const initialState = [
         title: 'Zapytaj o coś czytelników',
         completed: true,
         description: '',
-        start: new Date('2017-04-20T13:00:00.000Z'),
-        end: new Date('2017-04-20T14:00:00.000Z'),
+        start: new Date('2017-04-29T07:00:00.000Z'),
+        end: new Date('2017-04-29T09:00:00.000Z'),
         recurring: true,
         channels: 15,
         tools: 1
@@ -72,8 +72,8 @@ const initialState = [
         title: 'Porada z zakresu tematyki X',
         completed: true,
         description: '',
-        start: new Date('2017-04-25T15:00:00.000Z'),
-        end: new Date('2017-04-25T16:00:00.000Z'),
+        start: new Date('2017-04-27T09:00:00.000Z'),
+        end: new Date('2017-04-27T11:00:00.000Z'),
         recurring: false,
         channels: 3,
         tools: 1
@@ -84,7 +84,7 @@ const initialState = [
         completed: false,
         description: '',
         start: new Date('2017-04-24T16:00:00.000Z'),
-        end: new Date('2017-04-24T17:00:00.000Z'),
+        end: new Date('2017-04-24T18:00:00.000Z'),
         recurring: true,
         channels: 9,
         tools: 8
@@ -95,7 +95,7 @@ const initialState = [
         completed: false,
         description: 'Seria cytatów motywacyjnych',
         start: new Date('2017-04-26T18:00:00.000Z'),
-        end: new Date('2017-04-26T19:00:00.000Z'),
+        end: new Date('2017-04-26T20:00:00.000Z'),
         recurring: true,
         channels: 3,
         tools: 1
