@@ -16,6 +16,14 @@ import NewPostForm from '../NewPostForm/NewPostForm';
 
 import VisiblePostsList from '../../containers/VisiblePostsList/VisiblePostsList';
 
+import {Router, Route} from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory'
+
+const history = createBrowserHistory();
+
+import SettingsView from '../SettingsView/SettingsView';
+import CalendarView from '../CalendarView/CalendarView';
+
 import './App.css'
 
 const injectTapEventPlugin = require("react-tap-event-plugin");
@@ -29,12 +37,16 @@ let App = React.createClass({
         return (
             <div>
                 <Header />
-                <div className="container">
-                    <MainMenu />
-                    <div className="rightArea">
-                        <VisiblePostsList />
+                <Router history={history}>
+                    <div className="container">
+                        <MainMenu />
+                        <div className="rightArea">
+                            <Route exact path={'/'} component={VisiblePostsList}></Route>
+                            <Route path={'/calendar'} component={CalendarView}/>
+                            <Route path={'/settings'} component={SettingsView}></Route>
+                        </div>
                     </div>
-                </div>
+                </Router>
 
                 <div className="addNewButton">
                     <NewPostForm />

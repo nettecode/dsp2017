@@ -23,7 +23,8 @@ const params = (state = initialState, action) => {
             return {
                 ...state,
                 postPropertiesOpen: action.open,
-                editedPostId: action.postId || null
+                editedPostId: action.postId || null,
+                date: action.date || new Date()
             };
         case FILTER_CHANNEL:
             return {

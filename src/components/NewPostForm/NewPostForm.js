@@ -50,11 +50,11 @@ class NewPostForm extends React.Component {
                         rightBtnLabel: 'Zapisz',
                         isPostEdited: true,
                         editedPostId: editedPost.id,
-                        postName: editedPost.name,
+                        postName: editedPost.title,
                         description: editedPost.description,
                         completed: editedPost.completed,
-                        postName: editedPost.name,
-                        datetime: new Date(editedPost.publishAt),
+                        // datetime: new Date(editedPost.publishAt),
+                        datetime: editedPost.start,
                         publishChannels: editedPost.channels,
                         publishTools: editedPost.tools
                     });
@@ -67,7 +67,7 @@ class NewPostForm extends React.Component {
                     editedPostId: null,
                     postName: '',
                     description: '',
-                    datetime: new Date(),
+                    datetime: nextProps.params.date,
                     publishChannels: 0,
                     publishTools: 0,
                 });

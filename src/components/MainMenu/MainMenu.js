@@ -4,6 +4,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
@@ -40,12 +42,16 @@ class MainMenu extends React.Component {
             <div>
                 <Paper zDepth={2} className="mainMenu">
                     <List>
-                        {/*<ListItem*/}
-                            {/*primaryText="Kalendarz"*/}
-                        {/*/>*/}
-                        <ListItem
-                            primaryText="Lista"
-                        />
+                        <Link to={"/calendar"}>
+                            <ListItem
+                                primaryText="Kalendarz"
+                            />
+                        </Link>
+                        <Link to={"/"}>
+                            <ListItem
+                                primaryText="Lista"
+                            />
+                        </Link>
                         {/*<ListItem*/}
                             {/*primaryText="Baza pomysłów"*/}
                         {/*/>*/}
@@ -63,12 +69,14 @@ class MainMenu extends React.Component {
                         value={this.props.params.toolsFilter}
                         onChange={this.handleToolChange}
                     />
-                    {/*<Divider />*/}
-                    {/*<List>*/}
-                        {/*<ListItem*/}
-                            {/*primaryText="Ustawienia"*/}
-                        {/*/>*/}
-                    {/*</List>*/}
+                    <Divider />
+                    <List>
+                        <Link to={"/settings"}>
+                            <ListItem
+                                primaryText="Ustawienia"
+                            />
+                        </Link>
+                    </List>
                 </Paper>
             </div>
         );
