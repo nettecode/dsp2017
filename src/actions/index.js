@@ -22,10 +22,11 @@ export const removePost = (id) => ({
     id
 });
 
-export const openPostPropertiesDialog = (open, postId) => ({
+export const openPostPropertiesDialog = (open, postId, date) => ({
     type: types.OPEN_POST_PROP_DIALOG,
     open,
-    postId
+    postId,
+    date
 });
 
 export const filterChannel = (value) => ({
@@ -37,3 +38,9 @@ export const filterTools = (value) => ({
     type: types.FILTER_TOOLS,
     value
 });
+
+export const changePostDateTime = (id, newDateTime) => ({
+    type: types.CHANGE_DATE_TIME,
+    id,
+    newDateTime
+})

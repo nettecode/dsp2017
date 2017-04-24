@@ -2,6 +2,7 @@
     position: fixed;
     right: 50px;
     bottom: 50px;
+    z-index: 1000;
 }
 
 .container {
@@ -12,9 +13,10 @@
 .rightArea {
     padding: 0 40px;
     width: 100%;
-    margin: 0 0 0 260px;
+    margin: 0 0 0 300px;
 }
 
 ul {
     list-style-type: none;
+    -webkit-padding-start: 0;
 }

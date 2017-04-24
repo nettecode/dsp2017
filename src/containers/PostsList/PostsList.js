@@ -21,7 +21,7 @@ PostsList.propTypes = {
     posts: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         completed: PropTypes.bool.isRequired,
-        name: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired
     }).isRequired).isRequired,
     actions: PropTypes.object.isRequired,
     channels: PropTypes.array.isRequired
