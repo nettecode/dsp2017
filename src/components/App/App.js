@@ -17,6 +17,8 @@ const history = createBrowserHistory();
 import Login from '../Login/Login';
 import Layout from '../Layout/Layout';
 
+import { fetchChannels } from '../../actions';
+
 import './App.css'
 
 const injectTapEventPlugin = require("react-tap-event-plugin");
@@ -26,6 +28,11 @@ let App = React.createClass({
     getChildContext() {
         return {muiTheme: getMuiTheme(baseTheme)};
     },
+
+    componentWillMount() {
+        fetchChannels(this.props.dispatch);
+    },
+
     render: function () {
         return (
             <div className="topOffset">

@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes'
+import database from './database';
 
 export const addNewPost = (text) => ({
     type: types.ADD_POST,
@@ -44,3 +45,12 @@ export const changePostDateTime = (id, newDateTime) => ({
     id,
     newDateTime
 })
+
+export function fetchChannels(dispatch) {
+    database.ref('/channels').on('value', snap => {
+        dispatch({
+            type: 'FETCH_CHANNELS',
+            payload: snap.val()
+        });
+    });
+}
