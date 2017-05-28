@@ -41,17 +41,18 @@ class MainMenu extends React.Component {
         return (
             <div>
                 <Paper zDepth={2} className="mainMenu">
+                    <Link to={"/app/list"}>
+                        <ListItem
+                            primaryText="Lista"
+                        />
+                    </Link>
                     <List>
                         <Link to={"/app/calendar"}>
                             <ListItem
                                 primaryText="Kalendarz"
                             />
                         </Link>
-                        <Link to={"/app/list"}>
-                            <ListItem
-                                primaryText="Lista"
-                            />
-                        </Link>
+
                         {/*<ListItem*/}
                             {/*primaryText="Baza pomysłów"*/}
                         {/*/>*/}

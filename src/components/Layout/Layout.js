@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
-import {Route} from 'react-router';
+import { Route } from 'react-router';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -31,6 +31,7 @@ let Layout = React.createClass({
                 </div>
                 <div className="addNewButton">
                     <NewPostForm />
+                    /* FIXME: .ref instead */
                     <FloatingActionButton onTouchTap={() => {
                         this.props.dispatch(openPostPropertiesDialog(true));
                     }}>

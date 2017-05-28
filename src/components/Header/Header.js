@@ -21,7 +21,7 @@ function Header() {
                 title={<Link to="/app/calendar"><span>Social Media Planner</span></Link>}
                 onTitleTouchTap={handleTouchTap}
                 showMenuIconButton={false}
-                iconElementRight={<Link to="/login"><FlatButton label="Logout" /></Link>}
+                iconElementRight={/*<Link to="/login">*/<FlatButton label="Logout" />/*</Link>*/}
             />
         </div>
     );
