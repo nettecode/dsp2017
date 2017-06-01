@@ -41,7 +41,7 @@ let App = React.createClass({
                         <Header />
                         <div>
                             <Route path={'/login'} component={Login}></Route>
-                            <Route path={'/app'} component={Layout}/>
+                            <Route path={'/'} component={Layout}/>
                         </div>
                     </div>
                 </Router>

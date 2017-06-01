@@ -41,13 +41,13 @@ class MainMenu extends React.Component {
         return (
             <div>
                 <Paper zDepth={2} className="mainMenu">
-                    <Link to={"/app/list"}>
+                    <Link to={"/list"}>
                         <ListItem
                             primaryText="Lista"
                         />
                     </Link>
                     <List>
-                        <Link to={"/app/calendar"}>
+                        <Link to={"/calendar"}>
                             <ListItem
                                 primaryText="Kalendarz"
                             />
@@ -72,7 +72,7 @@ class MainMenu extends React.Component {
                     />
                     <Divider />
                     <List>
-                        <Link to={"/app/settings"}>
+                        <Link to={"/settings"}>
                             <ListItem
                                 primaryText="Ustawienia"
                             />

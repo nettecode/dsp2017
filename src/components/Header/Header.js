@@ -18,7 +18,7 @@ function Header() {
     return (
         <div className="header">
             <AppBar
-                title={<Link to="/app/list"><span>Social Media Planner</span></Link>}
+                title={<Link to="/"><span>Social Media Planner</span></Link>}
                 onTitleTouchTap={handleTouchTap}
                 showMenuIconButton={false}
                 iconElementRight={/*<Link to="/login">*/<FlatButton label="Logout" disabled={true}/>/*</Link>*/}

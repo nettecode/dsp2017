@@ -24,9 +24,10 @@ let Layout = React.createClass({
                 <div className="container">
                     <MainMenu />
                     <div className="rightArea">
-                        <Route path={'/app/list'} component={VisiblePostsList}></Route>
-                        <Route path={'/app/calendar'} component={CalendarView}/>
-                        <Route path={'/app/settings'} component={SettingsView}></Route>
+                        <Route exact path={'/'} component={VisiblePostsList}></Route>
+                        <Route path={'/list'} component={VisiblePostsList}></Route>
+                        <Route path={'/calendar'} component={CalendarView}/>
+                        <Route path={'/settings'} component={SettingsView}></Route>
                     </div>
                 </div>
                 <div className="addNewButton">
