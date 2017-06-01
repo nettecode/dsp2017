@@ -2,3 +2,7 @@
     min-width: 300px;
     position: fixed;
 }
+
+.mainMenu a {
+    text-decoration: none;
+}

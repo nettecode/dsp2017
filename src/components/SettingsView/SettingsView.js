@@ -7,7 +7,7 @@ const SettingsView = React.createClass({
     render: function () {
         return (
             <div>
-                <h2>Ustawienia</h2>
+                Ustawienia
             </div>
         );
     }
