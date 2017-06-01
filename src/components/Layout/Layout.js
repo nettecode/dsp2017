@@ -31,7 +31,7 @@ let Layout = React.createClass({
                 </div>
                 <div className="addNewButton">
                     <NewPostForm />
-                    /* FIXME: .ref instead */
+                    {/* FIXME: .ref instead */}
                     <FloatingActionButton onTouchTap={() => {
                         this.props.dispatch(openPostPropertiesDialog(true));
                     }}>

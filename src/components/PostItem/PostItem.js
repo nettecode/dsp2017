@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import FontIcon from 'material-ui/FontIcon';
+import Checkbox from 'material-ui/Checkbox';
 
 import DateFormat from 'dateformat';
 
@@ -36,9 +37,11 @@ class PostItem extends React.Component {
 
         return (
             <li className="postItem">
-                <a href="#" onClick={() => togglePostState(post.id)}>
-                    <FontIcon className='material-icons' style={{visibility: post.completed ? 'visible' : 'hidden'}}>done</FontIcon>
-                </a>
+                <Checkbox
+                    checked={post.completed}
+                    onCheck={() => togglePostState(post.id)}
+                    className="isDoneCheckbox"
+                />
                 <div className="postDetails">
                     <label>{post.title}</label>
                     <div>
