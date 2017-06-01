@@ -5,45 +5,8 @@ import {
 
 } from '../constants/ActionTypes'
 
-const initialState = [
-    {
-        id: 0,
-        name: 'Facebook',
-        value: 1,
-        color: '#3B5998',
-        faIcon: 'facebook'
-    },
-    {
-        id: 1,
-        name: 'Twitter',
-        value: 2,
-        color: '#0084b4',
-        faIcon: 'twitter'
-    },
-    {
-        id: 2,
-        name: 'Instagram',
-        value: 4,
-        color: '#fbad50',
-        faIcon: 'instagram'
-    },
-    {
-        id: 3,
-        name: 'Google+',
-        value: 8,
-        color: '#d62d20',
-        faIcon: 'google-plus'
-    },
-    {
-        id: 4,
-        name: 'Blog',
-        value: 16,
-        color: '#8a3ab9',
-        faIcon: ''
-    }
-];
-
-let lastValue = Math.pow(2, initialState.length-1);
+const initialState = [];
+let lastValue = 0;
 
 const channel = (state, action) => {
     switch (action.type) {
@@ -68,6 +31,10 @@ const channels = (state = initialState, action) => {
                 ...state,
                 channel(undefined, action)
             ];
+        case 'FETCH_CHANNELS': {
+            lastValue = Math.pow(2, action.payload.length-1);
+            return action.payload
+        }
         default:
             return state
     }

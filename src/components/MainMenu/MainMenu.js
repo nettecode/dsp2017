@@ -14,7 +14,7 @@ import FiltersList from '../FiltersList/FiltersList';
 import FilterMenu from '../FilterMenu/FilterMenu';
 import { filterChannel, filterTools } from '../../actions';
 
-import './mainMenu.css';
+import './MainMenu.css';
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -41,17 +41,18 @@ class MainMenu extends React.Component {
         return (
             <div>
                 <Paper zDepth={2} className="mainMenu">
+                    <Link to={"/app/list"}>
+                        <ListItem
+                            primaryText="Lista"
+                        />
+                    </Link>
                     <List>
-                        <Link to={"/calendar"}>
+                        <Link to={"/app/calendar"}>
                             <ListItem
                                 primaryText="Kalendarz"
                             />
                         </Link>
-                        <Link to={"/"}>
-                            <ListItem
-                                primaryText="Lista"
-                            />
-                        </Link>
+
                         {/*<ListItem*/}
                             {/*primaryText="Baza pomysłów"*/}
                         {/*/>*/}
@@ -71,7 +72,7 @@ class MainMenu extends React.Component {
                     />
                     <Divider />
                     <List>
-                        <Link to={"/settings"}>
+                        <Link to={"/app/settings"}>
                             <ListItem
                                 primaryText="Ustawienia"
                             />

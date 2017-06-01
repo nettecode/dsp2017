@@ -57,7 +57,6 @@ class CalendarView extends React.Component {
     render (){
         return (
             <div>
-                <h2>Kalendarz</h2>
                 <DragAndDropCalendar
                     selectable
                     events={this.state.events}

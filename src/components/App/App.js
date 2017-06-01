@@ -6,23 +6,18 @@ import { connect } from 'react-redux';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import Header from '../Header/Header';
-import MainMenu from '../MainMenu/MainMenu';
-import { openPostPropertiesDialog } from '../../actions';
-import NewPostForm from '../NewPostForm/NewPostForm';
-
-import VisiblePostsList from '../../containers/VisiblePostsList/VisiblePostsList';
 
 import {Router, Route} from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory'
 
 const history = createBrowserHistory();
 
-import SettingsView from '../SettingsView/SettingsView';
-import CalendarView from '../CalendarView/CalendarView';
+import Login from '../Login/Login';
+import Layout from '../Layout/Layout';
+
+import { fetchChannels } from '../../actions';
 
 import './App.css'
 
@@ -33,29 +28,23 @@ let App = React.createClass({
     getChildContext() {
         return {muiTheme: getMuiTheme(baseTheme)};
     },
+
+    componentWillMount() {
+        fetchChannels(this.props.dispatch);
+    },
+
     render: function () {
         return (
-            <div>
-                <Header />
+            <div className="topOffset">
                 <Router history={history}>
-                    <div className="container">
-                        <MainMenu />
-                        <div className="rightArea">
-                            <Route exact path={'/'} component={VisiblePostsList}></Route>
-                            <Route path={'/calendar'} component={CalendarView}/>
-                            <Route path={'/settings'} component={SettingsView}></Route>
+                    <div>
+                        <Header />
+                        <div>
+                            <Route path={'/login'} component={Login}></Route>
+                            <Route path={'/app'} component={Layout}/>
                         </div>
                     </div>
                 </Router>
-
-                <div className="addNewButton">
-                    <NewPostForm />
-                    <FloatingActionButton onTouchTap={() => {
-                        this.props.dispatch(openPostPropertiesDialog(true));
-                    }}>
-                        <ContentAdd />
-                    </FloatingActionButton>
-                </div>
             </div>
         );
     }
